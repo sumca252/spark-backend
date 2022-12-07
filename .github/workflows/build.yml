@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: docker/Dockerfile_prod
+          file: ./Dockerfile
           push: true
           tags:  isal20/spark-backend:1.0.0
           labels: ${{ steps.meta.outputs.labels }}
