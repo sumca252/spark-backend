@@ -2,12 +2,19 @@
  * Spark Backend Server
  */
 "use strict";
-require("dotenv").config();
+
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 
 const port = process.env.PORT || 1337;
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const { graphqlHTTP } = require("express-graphql");
+
+const schema = require("./graphql/schema");
+
 const app = express();
 
 const httpServer = require("http").createServer(app);
@@ -30,6 +37,15 @@ app.disable("x-powered-by");
 if (process.env.NODE_ENV !== "test") {
     app.use(morgan("combined")); // 'combined' outputs the Apache style LOGs
 }
+
+// GraphQL endpoint /api/v1/graphql
+app.use(
+    "/api/v1/graphql",
+    graphqlHTTP({
+        graphiql: process.env.NODE_ENV !== "production" ? true : false,
+        schema: schema,
+    })
+);
 
 // 404 route
 app.use((req, res) => {
