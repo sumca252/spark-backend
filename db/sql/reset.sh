@@ -10,3 +10,11 @@ mysql -uspark sparkdb <$file >/dev/null
 file="dml.sql"
 echo ">>> Inserting into all the tables using the file '($file)'"
 mysql -uspark sparkdb <$file >/dev/null
+
+file="ddl_views.sql"
+echo ">>> Creating views using the file '($file)'"
+mysql -uspark sparkdb <$file >/dev/null
+
+file="ddl_procedure.sql"
+echo ">>> Creating procedure using the file '($file)'"
+mysql -uspark sparkdb <$file >/dev/null
