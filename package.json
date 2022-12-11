@@ -32,10 +32,14 @@
     },
     "homepage": "https://github.com/sumca252/spark-backend/tree/main#readme",
     "dependencies": {
+        "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
-        "morgan": "^1.10.0"
+        "express-graphql": "^0.12.0",
+        "graphql": "^15.8.0",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.3.3"
     },
     "devDependencies": {
         "chai": "^4.3.7",
