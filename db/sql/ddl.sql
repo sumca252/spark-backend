@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `account` (
 CREATE TABLE IF NOT EXISTS `status` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `status` VARCHAR(255) NOT NULL UNIQUE,
-    -- available, unavailable etc.
     PRIMARY KEY (`id`)
 );
 
@@ -105,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `scooter` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `battery` INT NOT NULL,
     `status_id` INT NOT NULL,
-    `longitude` DECIMAL(10, 2) NOT NULL,
-    `latitude` DECIMAL(10, 2) NOT NULL,
+    `longitude` DECIMAL(10, 8) NOT NULL,
+    `latitude` DECIMAL(10, 8) NOT NULL,
     `price_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
@@ -128,9 +127,9 @@ CREATE TABLE IF NOT EXISTS `zone` (
 CREATE TABLE IF NOT EXISTS `city` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL UNIQUE,
-    `country` VARCHAR(255) NOT NULL UNIQUE,
-    `longitude` DECIMAL(10, 2) NOT NULL UNIQUE,
-    `latitude` DECIMAL(10, 2) NOT NULL UNIQUE,
+    `country` VARCHAR(255) NOT NULL,
+    `longitude` DECIMAL(10, 5) NOT NULL UNIQUE,
+    `latitude` DECIMAL(10, 6) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 );
 
@@ -139,10 +138,10 @@ CREATE TABLE IF NOT EXISTS `city` (
 --
 CREATE TABLE IF NOT EXISTS `station` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL UNIQUE,
+    `name` VARCHAR(255) NOT NULL,
     `zone_id` INT NOT NULL,
-    `longitude` DECIMAL(10, 2) NOT NULL UNIQUE,
-    `latitude` DECIMAL(10, 2) NOT NULL UNIQUE,
+    `longitude` DECIMAL(10, 8) NOT NULL,
+    `latitude` DECIMAL(10, 8) NOT NULL,
     `city_id` INT NOT NULL,
     `scooter_id` INT NOT NULL,
     PRIMARY KEY (`id`),
@@ -159,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
     `payment_method` VARCHAR(255) NOT NULL UNIQUE,
     `account_id` INT NOT NULL,
     `price_id` INT NOT NULL,
-    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date` DATETIME NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
     FOREIGN KEY (`price_id`) REFERENCES `price` (`id`)
@@ -170,12 +169,12 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 CREATE TABLE IF NOT EXISTS `logs` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `start_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `end_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `start_longitude` DECIMAL(10, 2) NOT NULL,
-    `start_latitude` DECIMAL(10, 2) NOT NULL,
-    `end_longitude` DECIMAL(10, 2) NOT NULL,
-    `end_latitude` DECIMAL(10, 2) NOT NULL,
+    `start_time` DATETIME NOT NULL,
+    `end_time` DATETIME NOT NULL,
+    `start_longitude` DECIMAL(10, 8) NOT NULL,
+    `start_latitude` DECIMAL(10, 8) NOT NULL,
+    `end_longitude` DECIMAL(10, 8) NOT NULL,
+    `end_latitude` DECIMAL(10, 8) NOT NULL,
     `customer_id` INT NOT NULL,
     `price_id` INT NOT NULL,
     `scooter_id` INT NOT NULL,
