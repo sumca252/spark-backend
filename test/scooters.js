@@ -30,7 +30,9 @@ describe("/api/v1/graphql", () => {
                                   start_cost,
                                   travel_cost,
                                   parking_cost,
-                                }
+                                },
+                                running,
+                                speed
                             }
                         }
                     `,
@@ -56,6 +58,13 @@ describe("/api/v1/graphql", () => {
                         "price"
                     );
 
+                    res.body.data.getAllScooters[0].should.have.property(
+                        "running"
+                    );
+                    res.body.data.getAllScooters[0].should.have.property(
+                        "speed"
+                    );
+
                     done();
                 });
         });
@@ -78,7 +87,9 @@ describe("/api/v1/graphql", () => {
                                   start_cost,
                                   travel_cost,
                                   parking_cost,
-                                }
+                                },
+                                running,
+                                speed
                             }
                         }
                     `,
@@ -101,6 +112,13 @@ describe("/api/v1/graphql", () => {
                     );
                     res.body.data.getScooterById[0].should.have.property(
                         "price"
+                    );
+
+                    res.body.data.getScooterById[0].should.have.property(
+                        "running"
+                    );
+                    res.body.data.getScooterById[0].should.have.property(
+                        "speed"
                     );
                     done();
                 });
