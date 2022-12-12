@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `role` (
 --
 CREATE TABLE IF NOT EXISTS `user` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `first_name` VARCHAR(255) NOT NULL,
-    `last_name` VARCHAR(255) NOT NULL,
+    `first_name` VARCHAR(255) NOT NULL UNIQUE,
+    `last_name` VARCHAR(255) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `phone` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `phone` VARCHAR(255) NOT NULL UNIQUE,
     `role_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
@@ -107,10 +107,13 @@ CREATE TABLE IF NOT EXISTS `scooter` (
     `longitude` DECIMAL(10, 8) NOT NULL,
     `latitude` DECIMAL(10, 8) NOT NULL,
     `price_id` INT NOT NULL,
+    `running` BOOLEAN NOT NULL DEFAULT 0,
+    `speed` INT NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
     FOREIGN KEY (`price_id`) REFERENCES `price` (`id`)
 );
+
 
 --
 -- zone 
