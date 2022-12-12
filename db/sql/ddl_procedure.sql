@@ -579,6 +579,47 @@ END;;
 
 DELIMITER ;
 
+
+--
+-- get all stations
+--
+
+DROP PROCEDURE IF EXISTS `get_all_stations`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_stations`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_stations;
+END;;
+
+DELIMITER ;
+
+--
+-- get station by id
+--
+
+DROP PROCEDURE IF EXISTS `get_station_by_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_station_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_stations
+WHERE
+    id = a_id;
+END;;
+
+DELIMITER ;
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------

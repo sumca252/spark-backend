@@ -17,7 +17,9 @@ SELECT
     sc.latitude,
     p.start_cost,
     p.travel_cost,
-    p.parking_cost
+    p.parking_cost,
+    sc.running,
+    sc.speed
 FROM
     scooter AS sc
     JOIN status AS s ON s.id = sc.status_id
@@ -144,6 +146,33 @@ GROUP BY
     ac.id
 ORDER BY
     ac.id ASC;
+
+
+--
+-- view all_stations
+--
+
+DROP VIEW IF EXISTS `all_stations`;
+
+CREATE VIEW `all_stations` AS
+SELECT
+    s.id,
+    s.name AS station_name,
+    s.city_id,
+    c.name AS city_name,
+    c.country,
+    z.type AS zone_type,
+    s.scooter_id,
+    s.longitude,
+    s.latitude
+FROM
+    station AS s
+    JOIN city AS c ON c.id = s.city_id
+    JOIN zone AS z ON z.id = s.zone_id
+ORDER BY
+    s.id ASC;
+
+
 
 -- 
 ---------------------------------------------------------------------------
