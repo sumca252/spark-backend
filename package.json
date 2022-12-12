@@ -7,7 +7,7 @@
         "test": "test"
     },
     "scripts": {
-        "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000",
+        "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
         "posttest": "npm run eslint",
         "eslint": "eslint \"src/**/*.js\"",
         "fix": "eslint \"src/**/*.js\" --fix",
