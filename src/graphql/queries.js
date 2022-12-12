@@ -21,6 +21,7 @@ const {
     ScooterType,
     ZoneType,
     CityType,
+    StationType,
 } = require("./types");
 
 // Models
@@ -33,13 +34,14 @@ const Prices = require("../models/prices.model");
 const Scooters = require("../models/scooters.model");
 const Zones = require("../models/zones.model");
 const Cities = require("../models/cities.model");
+const Stations = require("../models/stations.model");
 
 // Root Query
 const RootQueryType = new GraphQLObjectType({
     name: "Query",
     description: "Root Query for the application",
     fields: () => ({
-        getAllroles: {
+        getAllRoles: {
             type: new GraphQLList(RoleType),
             description: "List of all Roles",
             resolve: async () => {
@@ -89,10 +91,6 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: async (parent, args) => {
                 const user = await Users.getUserByEmail(args.email);
-
-                if (!user) {
-                    throw new Error(`User with email ${args.email} not found`);
-                }
 
                 return user;
             },
@@ -249,6 +247,29 @@ const RootQueryType = new GraphQLObjectType({
                 const city = await Cities.getCityById(parseInt(args.id));
 
                 return city;
+            },
+        },
+        getAllStations: {
+            type: new GraphQLList(StationType),
+            description: "List of all Stations",
+            resolve: async () => {
+                const stations = await Stations.getAllStations();
+
+                return stations;
+            },
+        },
+        getStationById: {
+            type: new GraphQLList(StationType),
+            description: "A single Station by id",
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const station = await Stations.getStationById(
+                    parseInt(args.id)
+                );
+
+                return station;
             },
         },
     }),

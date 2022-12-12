@@ -1,14 +1,25 @@
 /**
  * Type definitions for GraphQL schema
  */
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = require("graphql");
+const {
+    GraphQLObjectType,
+    GraphQLNonNull,
+    GraphQLString,
+    GraphQLBoolean,
+} = require("graphql");
 
 const RoleType = new GraphQLObjectType({
     name: "Role",
     description: "This represents a Role of a User",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        role: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the role",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        role: {
+            description: "The role of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -16,13 +27,34 @@ const UserType = new GraphQLObjectType({
     name: "User",
     description: "This represents a User of the application",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        first_name: { type: new GraphQLNonNull(GraphQLString) },
-        last_name: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) },
-        phone: { type: new GraphQLNonNull(GraphQLString) },
-        role: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        first_name: {
+            description: "The first name of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        last_name: {
+            description: "The last name of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        password: {
+            description: "The hashed password of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        email: {
+            description: "The email of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        phone: {
+            description: "The phone number of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        role: {
+            description: "The role of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -30,8 +62,12 @@ const CustomerType = new GraphQLObjectType({
     name: "Customer",
     description: "This represents a Customer",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the customer",
+            type: new GraphQLNonNull(GraphQLString),
+        },
         user: {
+            description: "Customer's user",
             type: UserType,
             resolve: (user) => {
                 return {
@@ -51,8 +87,12 @@ const AccountType = new GraphQLObjectType({
     name: "Account",
     description: "This represents an Account",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the account",
+            type: new GraphQLNonNull(GraphQLString),
+        },
         customer: {
+            description: "Account's customer",
             type: CustomerType,
             resolve: (customer) => {
                 return {
@@ -64,8 +104,14 @@ const AccountType = new GraphQLObjectType({
                 };
             },
         },
-        balance: { type: new GraphQLNonNull(GraphQLString) },
-        payment_method: { type: new GraphQLNonNull(GraphQLString) },
+        balance: {
+            description: "The balance of the account",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        payment_method: {
+            description: "The payment method of the account",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -73,8 +119,14 @@ const StatusType = new GraphQLObjectType({
     name: "Status",
     description: "This represents a Status",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        status: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the status",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        status: {
+            description: "The status of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -82,10 +134,22 @@ const PriceType = new GraphQLObjectType({
     name: "Price",
     description: "This represents a Price",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        start_cost: { type: new GraphQLNonNull(GraphQLString) },
-        travel_cost: { type: new GraphQLNonNull(GraphQLString) },
-        parking_cost: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the price",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        start_cost: {
+            description: "The start cost of the price",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        travel_cost: {
+            description: "The travel cost of the price",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        parking_cost: {
+            description: "The parking cost of the price",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -93,9 +157,16 @@ const ScooterType = new GraphQLObjectType({
     name: "Scooter",
     description: "This represents a Scooter",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        battery: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        battery: {
+            description: "The battery level of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
         status: {
+            description: "The status of the scooter",
             type: StatusType,
             resolve: (status) => {
                 return {
@@ -104,9 +175,16 @@ const ScooterType = new GraphQLObjectType({
                 };
             },
         },
-        longitude: { type: new GraphQLNonNull(GraphQLString) },
-        latitude: { type: new GraphQLNonNull(GraphQLString) },
+        longitude: {
+            description: "The longitude of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        latitude: {
+            description: "The latitude of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
         price: {
+            description: "The price for renting the scooter",
             type: PriceType,
             resolve: (price) => {
                 return {
@@ -117,6 +195,14 @@ const ScooterType = new GraphQLObjectType({
                 };
             },
         },
+        running: {
+            description: "The running status of the scooter",
+            type: new GraphQLNonNull(GraphQLBoolean),
+        },
+        speed: {
+            description: "The speed of the scooter",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -124,8 +210,14 @@ const ZoneType = new GraphQLObjectType({
     name: "Zone",
     description: "This represents a Zone of a Station",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        type: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the zone",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        type: {
+            description: "The type of the zone",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -133,11 +225,61 @@ const CityType = new GraphQLObjectType({
     name: "City",
     description: "This represents a City",
     fields: () => ({
-        id: { type: new GraphQLNonNull(GraphQLString) },
-        name: { type: new GraphQLNonNull(GraphQLString) },
-        country: { type: new GraphQLNonNull(GraphQLString) },
-        longitude: { type: new GraphQLNonNull(GraphQLString) },
-        latitude: { type: new GraphQLNonNull(GraphQLString) },
+        id: {
+            description: "The id of the city",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        name: {
+            description: "The name of the city",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        country: {
+            description: "The country where the city is located",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        longitude: {
+            description: "The longitude of the city",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        latitude: {
+            description: "The latitude of the city",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+    }),
+});
+
+const StationType = new GraphQLObjectType({
+    name: "Station",
+    description: "This represents a Station",
+    fields: () => ({
+        id: {
+            description: "The id of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        station_name: {
+            description: "The name of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        city_id: {
+            description: "The city where the station is located",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        zone_type: {
+            description: "The zone of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        scooter_id: {
+            description: "The scooter of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        longitude: {
+            description: "The longitude of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        latitude: {
+            description: "The latitude of the station",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
@@ -151,4 +293,5 @@ module.exports = {
     ScooterType,
     ZoneType,
     CityType,
+    StationType,
 };
