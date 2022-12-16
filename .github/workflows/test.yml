@@ -12,8 +12,19 @@ jobs:
             matrix:
                 node-version: [16.x]	
 
+        env:
+            MYSQL_USER: "{{ secrets.MYSQL_USER }}"
+            MYSQL_PASSWORD: "{{ secrets.MYSQL_PASSWORD }}"
+
         steps:
-            - uses: actions/checkout@v3
+            - name: Checkout repository code  
+              uses: actions/checkout@v3 
+            - name: Setup MySQL
+              run: |
+                    sudo /etc/init.d/mysql start
+                    mysql -u root -e "CREATE DATABASE IF NOT EXISTS sparkdb;"
+                    mysql -u root sparkdb < ./db/sql/backup.sql
+                    
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
