@@ -26,8 +26,8 @@ jobs:
             - name: Setup MySQL
               run: |
                     sudo /etc/init.d/mysql start
-                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h127.0.0.1 -e "CREATE DATABASE {{ secrets.MYSQL_DATABASE }};"
-                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h127.0.0.1 sparkdb < ./spark-backend/db/backup.sql
+                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h 127.0.0.1 -e "CREATE DATABASE {{ secrets.MYSQL_DATABASE }};"
+                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h 127.0.0.1 sparkdb < ./spark-backend/db/backup.sql
                     
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
