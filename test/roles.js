@@ -18,7 +18,7 @@ describe("/api/v1/graphql", () => {
                 .send({
                     query: `
                         {
-                            getAllroles {
+                            getAllRoles {
                                 id,
                                 role
                             }
@@ -27,16 +27,16 @@ describe("/api/v1/graphql", () => {
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
-                    res.body.data.getAllroles.should.be.a("array");
-                    res.body.data.getAllroles.length.should.be.eq(2);
-                    res.body.data.getAllroles[0].should.have.property("id");
-                    res.body.data.getAllroles[0].should.have.property("role");
+                    res.body.data.getAllRoles.should.be.a("array");
+                    res.body.data.getAllRoles.length.should.be.eq(2);
+                    res.body.data.getAllRoles[0].should.have.property("id");
+                    res.body.data.getAllRoles[0].should.have.property("role");
 
-                    res.body.data.getAllroles[0].id.should.be.eq("1");
-                    res.body.data.getAllroles[0].role.should.be.eq("Admin");
+                    res.body.data.getAllRoles[0].id.should.be.eq("1");
+                    res.body.data.getAllRoles[0].role.should.be.eq("Admin");
 
-                    res.body.data.getAllroles[1].id.should.be.eq("2");
-                    res.body.data.getAllroles[1].role.should.be.eq("Customer");
+                    res.body.data.getAllRoles[1].id.should.be.eq("2");
+                    res.body.data.getAllRoles[1].role.should.be.eq("Customer");
 
                     done();
                 });
