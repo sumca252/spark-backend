@@ -35,7 +35,6 @@ describe("/api/v1/graphql", () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.data.getAllCustomers.should.be.a("array");
-                    res.body.data.getAllCustomers.length.should.be.eq(995);
                     res.body.data.getAllCustomers[0].should.have.property("id");
                     res.body.data.getAllCustomers[0].user.should.have.property(
                         "first_name"

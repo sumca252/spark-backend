@@ -37,7 +37,6 @@ describe("/api/v1/graphql", () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.data.getAllAccounts.should.be.a("array");
-                    res.body.data.getAllAccounts.length.should.be.eq(497);
                     res.body.data.getAllAccounts[0].should.have.property("id");
                     res.body.data.getAllAccounts[0].customer.should.have.property(
                         "id"
@@ -70,7 +69,7 @@ describe("/api/v1/graphql", () => {
                 .send({
                     query: `
                         {
-                            getAccountByCustomerId(id: "7") {
+                            getAccountByCustomerId(id: "9") {
                                 id,
                                 customer {
                                     id,
