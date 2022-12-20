@@ -45,6 +45,24 @@ const Users = {
 
         return result;
     },
+    getUserByUsername: (username) => {
+        console.log(username);
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_user_by_username(?)",
+                [username],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
     createUser: (user) => {
         const hashedPassword = bcrypt.hashSync(user.password, 10);
 

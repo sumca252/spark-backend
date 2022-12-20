@@ -66,6 +66,7 @@ SELECT
     u.last_name,
     u.password,
     u.email,
+    u.username,
     u.phone,
     r.role
 FROM
@@ -85,6 +86,7 @@ SELECT
     u.first_name,
     u.last_name,
     u.email,
+    u.username,
     u.phone,
     r.role
 FROM
@@ -121,6 +123,7 @@ SELECT
     u.last_name,
     u.password,
     u.email,
+    u.username,
     u.phone,
     r.role
 FROM

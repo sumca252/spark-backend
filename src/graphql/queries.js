@@ -95,6 +95,18 @@ const RootQueryType = new GraphQLObjectType({
                 return user;
             },
         },
+        getUserByUsername: {
+            type: new GraphQLList(UserType),
+            description: "A single User by username",
+            args: {
+                username: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const user = await Users.getUserByUsername(args.username);
+
+                return user;
+            },
+        },
         getAllCustomers: {
             type: new GraphQLList(CustomerType),
             description: "List of all Customers",
@@ -193,8 +205,6 @@ const RootQueryType = new GraphQLObjectType({
                 return scooters;
             },
         },
-        /*         get_all_scooters_in_city_by_city_id
-        get_all_scooters_in_station_by_station_id */
         getAllScooterInCityByCityId: {
             type: new GraphQLList(ScooterType),
             description: "List of all Scooters in a city by city id",

@@ -371,6 +371,29 @@ END;;
 DELIMITER ;
 
 --
+-- get user by username
+--
+DROP PROCEDURE IF EXISTS `get_user_by_username`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_user_by_username`(
+    IN `a_username` VARCHAR(255)
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_users
+WHERE
+    username = a_username;
+END;;
+
+DELIMITER ;
+
+
+
+--
 -- update a specific user by id
 --
 
