@@ -30,27 +30,29 @@ const Cities = {
         return result;
     },
     addCity: (city) => {
-        const result = new Promise((resolve, reject) => {
+        new Promise((resolve, reject) => {
             db.query(
                 "CALL add_city(?, ?, ?, ?)",
                 [city.name, city.country, city.longitude, city.latitude],
-                (err, rows) => {
+                (err) => {
                     if (err) {
                         reject(err);
                     }
-
-                    resolve(rows[0]);
                 }
             );
         });
-
-        return result;
     },
-    updateCityById: (id, city) => {
-        const result = new Promise((resolve, reject) => {
+    updateCityById: (city) => {
+        new Promise((resolve, reject) => {
             db.query(
                 "CALL update_city_by_id(?, ?, ?, ?, ?)",
-                [id, city.name, city.country, city.longitude, city.latitude],
+                [
+                    city.id,
+                    city.name,
+                    city.country,
+                    city.longitude,
+                    city.latitude,
+                ],
                 (err, rows) => {
                     if (err) {
                         reject(err);
@@ -60,8 +62,6 @@ const Cities = {
                 }
             );
         });
-
-        return result;
     },
 };
 

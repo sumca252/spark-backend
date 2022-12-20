@@ -30,6 +30,45 @@ const Stations = {
 
         return result;
     },
+    addStation: (station) => {
+        new Promise((resolve, reject) => {
+            db.query(
+                "CALL add_station(?, ?, ?, ?, ?)",
+                [
+                    station.name,
+                    station.zone_id,
+                    station.longitude,
+                    station.latitude,
+                    station.city_id,
+                ],
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    }
+                }
+            );
+        });
+    },
+    updateStationById: (station) => {
+        new Promise((resolve, reject) => {
+            db.query(
+                "CALL update_station_by_id(?, ?, ?, ?, ?, ?)",
+                [
+                    station.id,
+                    station.name,
+                    station.zone_id,
+                    station.longitude,
+                    station.latitude,
+                    station.city_id,
+                ],
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    }
+                }
+            );
+        });
+    },
 };
 
 module.exports = Stations;

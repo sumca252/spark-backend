@@ -30,6 +30,28 @@ const Zones = {
 
         return result;
     },
+    addZone: (zone) => {
+        new Promise((resolve, reject) => {
+            db.query("CALL add_zone(?)", [zone.type], (err) => {
+                if (err) {
+                    reject(err);
+                }
+            });
+        });
+    },
+    updateZoneById: (zone) => {
+        new Promise((resolve, reject) => {
+            db.query(
+                "CALL update_zone_by_id(?, ?)",
+                [zone.id, zone.type],
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    }
+                }
+            );
+        });
+    },
 };
 
 module.exports = Zones;

@@ -17,28 +17,56 @@ const Scooters = {
 
         return result;
     },
-    /**
-     * Adds a scooter to the database
-     *
-     * @param {*} scooter
-     */
+    getAllScooterInCityByCityId: (id) => {
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_all_scooters_in_city_by_city_id(?)",
+                [id],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
+    getAllScooterInStationByStationId: (id) => {
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_all_scooters_in_station_by_station_id(?)",
+                [id],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
     addScooter: (scooter) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL add_scooter(?, ?, ?, ?, ?)",
+                "CALL add_scooter(?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                     scooter.battery,
                     scooter.status_id,
                     scooter.longitude,
                     scooter.latitude,
                     scooter.price_id,
+                    scooter.running,
+                    scooter.speed,
+                    scooter.station_id,
                 ],
-                (err, rows) => {
+                (err) => {
                     if (err) {
                         reject(err);
                     }
-
-                    resolve(rows[0]);
                 }
             );
         });
@@ -56,17 +84,20 @@ const Scooters = {
 
         return result;
     },
-    updateScooterById: (id, scooter) => {
+    updateScooterById: (scooter) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL update_scooter_by_id(?, ?, ?, ?, ?, ?)",
+                "CALL update_scooter_by_id(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
-                    id,
+                    scooter.id,
                     scooter.battery,
                     scooter.status_id,
                     scooter.longitude,
                     scooter.latitude,
                     scooter.price_id,
+                    scooter.running,
+                    scooter.speed,
+                    scooter.station_id,
                 ],
                 (err, rows) => {
                     if (err) {
@@ -80,12 +111,10 @@ const Scooters = {
     },
     deleteScooterById: (id) => {
         new Promise((resolve, reject) => {
-            db.query("CALL delete_scooter_by_id(?)", [id], (err, rows) => {
+            db.query("CALL delete_scooter_by_id(?)", [id], (err) => {
                 if (err) {
                     reject(err);
                 }
-
-                resolve(rows[0]);
             });
         });
     },

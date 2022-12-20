@@ -193,6 +193,35 @@ const RootQueryType = new GraphQLObjectType({
                 return scooters;
             },
         },
+        /*         get_all_scooters_in_city_by_city_id
+        get_all_scooters_in_station_by_station_id */
+        getAllScooterInCityByCityId: {
+            type: new GraphQLList(ScooterType),
+            description: "List of all Scooters in a city by city id",
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const scooters = await Scooters.getAllScooterInCityByCityId(
+                    args.id
+                );
+
+                return scooters;
+            },
+        },
+        getAllScooterInStationByStationId: {
+            type: new GraphQLList(ScooterType),
+            description: "List of all Scooters in a station by station id",
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const scooters =
+                    await Scooters.getAllScooterInStationByStationId(args.id);
+
+                return scooters;
+            },
+        },
         getScooterById: {
             type: new GraphQLList(ScooterType),
             description: "A single Scooter by id",

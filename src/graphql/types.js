@@ -203,6 +203,20 @@ const ScooterType = new GraphQLObjectType({
             description: "The speed of the scooter",
             type: new GraphQLNonNull(GraphQLString),
         },
+        station: {
+            description: "The station where the scooter is located",
+            type: StationType,
+            resolve: (station) => {
+                return {
+                    id: station.id,
+                    station_name: station.station_name,
+                    city_name: station.city_name,
+                    zone_type: station.zone_type,
+                    longitude: station.longitude,
+                    latitude: station.latitude,
+                };
+            },
+        },
     }),
 });
 
@@ -260,16 +274,12 @@ const StationType = new GraphQLObjectType({
             description: "The name of the station",
             type: new GraphQLNonNull(GraphQLString),
         },
-        city_id: {
+        city_name: {
             description: "The city where the station is located",
             type: new GraphQLNonNull(GraphQLString),
         },
         zone_type: {
             description: "The zone of the station",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        scooter_id: {
-            description: "The scooter of the station",
             type: new GraphQLNonNull(GraphQLString),
         },
         longitude: {
