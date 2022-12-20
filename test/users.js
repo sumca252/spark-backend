@@ -136,5 +136,54 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should return a single user by username", (done) => {
+            chai.request(server)
+                .get("/api/v1/graphql")
+                .send({
+                    query: `
+                        {
+                            getUserByUsername(username:"JosephGuzman1374") {
+                            id,
+                            first_name,
+                            last_name,
+                            password,
+                            email,
+                            phone,
+                            role
+                            
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.getUserByUsername.should.be.a("array");
+                    res.body.data.getUserByUsername.length.should.be.eq(1);
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "id"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "first_name"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "last_name"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "password"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "email"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "phone"
+                    );
+                    res.body.data.getUserByUsername[0].should.have.property(
+                        "role"
+                    );
+
+                    done();
+                });
+        });
     });
 });
