@@ -97,7 +97,7 @@ describe("/api/v1/graphql", () => {
                 .send({
                     query: `
                         {
-                            getUserByEmail(email: "palinho.sparvsson@fejka.nu") {
+                            getUserByEmail(email: "smithkevin@example.net") {
                                 id,
                                 first_name,
                                 last_name,

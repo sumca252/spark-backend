@@ -21,9 +21,8 @@ describe("/api/v1/graphql", () => {
                             getAllStations {
                                 id,
                                 station_name,
-                                city_id,
+                                city_name,
                                 zone_type,
-                                scooter_id,
                                 longitude,
                                 latitude,
                             }
@@ -39,13 +38,10 @@ describe("/api/v1/graphql", () => {
                         "station_name"
                     );
                     res.body.data.getAllStations[0].should.have.property(
-                        "city_id"
+                        "city_name"
                     );
                     res.body.data.getAllStations[0].should.have.property(
                         "zone_type"
-                    );
-                    res.body.data.getAllStations[0].should.have.property(
-                        "scooter_id"
                     );
                     res.body.data.getAllStations[0].should.have.property(
                         "longitude"
@@ -67,9 +63,8 @@ describe("/api/v1/graphql", () => {
                             getStationById(id:"1") {
                                 id,
                                 station_name,
-                                city_id,
+                                city_name,
                                 zone_type,
-                                scooter_id,
                                 longitude,
                                 latitude,
                             }
@@ -85,13 +80,10 @@ describe("/api/v1/graphql", () => {
                         "station_name"
                     );
                     res.body.data.getStationById[0].should.have.property(
-                        "city_id"
+                        "city_name"
                     );
                     res.body.data.getStationById[0].should.have.property(
                         "zone_type"
-                    );
-                    res.body.data.getStationById[0].should.have.property(
-                        "scooter_id"
                     );
                     res.body.data.getStationById[0].should.have.property(
                         "longitude"
@@ -99,6 +91,67 @@ describe("/api/v1/graphql", () => {
                     res.body.data.getStationById[0].should.have.property(
                         "latitude"
                     );
+
+                    done();
+                });
+        });
+
+        it("Should add a station", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            addStation(
+                                name: "Test Station",
+                                zone_id: "1",
+                                longitude: "1.1",
+                                latitude: "1.1",
+                                city_id: "1"
+                            ) {
+                                id,
+                                station_name,
+                                city_name,
+                                zone_type,
+                                longitude,
+                                latitude,
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+
+                    done();
+                });
+        });
+
+        it("Should update a station by id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            updateStationById(
+                                id: "1",
+                                name: "Test Station",
+                                zone_id: "1",
+                                longitude: "1.1",
+                                latitude: "1.1",
+                                city_id: "1"
+                            ) {
+                                id,
+                                station_name,
+                                city_name,
+                                zone_type,
+                                longitude,
+                                latitude,
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
 
                     done();
                 });

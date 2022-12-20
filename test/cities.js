@@ -84,5 +84,60 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should add a city", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            addCity(
+                                name: "Karlskrona",
+                                country: "Sweden",
+                                longitude: "15.5866",
+                                latitude: "56.1616"
+                            ) {
+                                id,
+                                name,
+                                country,
+                                longitude,
+                                latitude
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+        it("Should update a city by id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            updateCityById(
+                                id: "11",
+                                name: "Karlshamn",
+                                country: "Sweden",
+                                longitude: "15.5866",
+                                latitude: "56.1616"
+                            ) {
+                                id,
+                                name,
+                                country,
+                                longitude,
+                                latitude
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
     });
 });

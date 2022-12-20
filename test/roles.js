@@ -48,7 +48,7 @@ describe("/api/v1/graphql", () => {
                 .send({
                     query: `
                         {
-                            getRoleById(id: "1") {
+                            getRoleById(id: "2") {
                                 id,
                                 role
                             }
@@ -62,8 +62,8 @@ describe("/api/v1/graphql", () => {
                     res.body.data.getRoleById[0].should.have.property("id");
                     res.body.data.getRoleById[0].should.have.property("role");
 
-                    res.body.data.getRoleById[0].id.should.be.eq("1");
-                    res.body.data.getRoleById[0].role.should.be.eq("Admin");
+                    res.body.data.getRoleById[0].id.should.be.eq("2");
+                    res.body.data.getRoleById[0].role.should.be.eq("Customer");
 
                     done();
                 });

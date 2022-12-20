@@ -56,5 +56,43 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should add a zone", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            addZone(type: "Test") {
+                                type,
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+        it("Should update a zone by id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            updateZoneById(id: "1", type: "Test") {
+                                id,
+                                type,
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+
+                    done();
+                });
+        });
     });
 });
