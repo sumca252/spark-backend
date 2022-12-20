@@ -29,15 +29,37 @@ CREATE PROCEDURE `add_scooter`(
     IN `a_status_id` INT, 
     IN `a_longitude` DECIMAL(10, 8), 
     IN `a_latitude` DECIMAL(10, 8), 
-    IN `a_price_id` INT
+    IN `a_price_id` INT,
+    IN `a_running` BOOLEAN,
+    IN `a_speed` INT,
+    IN `a_station_id` INT
 )
 BEGIN 
 INSERT INTO 
-    `scooter` (`battery`, `status_id`, `longitude`, `latitude`, `price_id`)
+    `scooter` (
+        `battery`, 
+        `status_id`, 
+        `longitude`,
+        `latitude`, 
+        `price_id`, 
+        `running`, 
+        `speed`, 
+        `station_id`
+    )
 VALUES 
-    (a_battery, a_status_id, a_longitude, a_latitude, a_price_id);
+    (
+        a_battery, 
+        a_status_id, 
+        a_longitude, 
+        a_latitude, 
+        a_price_id, 
+        a_running, 
+        a_speed, 
+        a_station_id
+    );
 END;;
 DELIMITER ;
+
 --
 -- get scooter by id
 --
@@ -56,6 +78,7 @@ WHERE
 END;;
 
 DELIMITER ;
+
 --
 -- update a specific scooter by id
 --
@@ -69,7 +92,10 @@ CREATE PROCEDURE `update_scooter_by_id`(
     IN `a_status_id` INT, 
     IN `a_longitude` DECIMAL(10, 8), 
     IN `a_latitude` DECIMAL(10, 8), 
-    IN `a_price_id` INT
+    IN `a_price_id` INT,
+    IN `a_running` BOOLEAN,
+    IN `a_speed` INT,
+    IN `a_station_id` INT
 )
 BEGIN
 UPDATE 
@@ -79,14 +105,16 @@ SET
     `status_id` = a_status_id,
     `longitude` = a_longitude,
     `latitude` = a_latitude,
-    `price_id` = a_price_id
+    `price_id` = a_price_id,
+    `running` = a_running,
+    `speed` = a_speed
 WHERE 
     `id` = a_id;
 END;;
 DELIMITER ;
 
 --
--- soft delete a specific scooter by id
+-- 
 --
 DROP PROCEDURE IF EXISTS `delete_scooter_by_id`;
 DELIMITER ;;
@@ -121,6 +149,57 @@ FROM
 END;;
 
 DELIMITER ;
+
+--
+-- get all scooters in a city
+--
+DROP PROCEDURE IF EXISTS `get_all_scooters_in_city_by_city_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_scooters_in_city_by_city_id`(
+    IN `a_city_id` INT
+)
+
+BEGIN
+SELECT 
+    *
+FROM
+    all_scooters
+WHERE
+    city_id = a_city_id;
+END;;
+
+DELIMITER ;
+
+--
+-- get all scooters in a station 
+--
+DROP PROCEDURE IF EXISTS `get_all_scooters_in_station_by_station_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_scooters_in_station_by_station_id`(
+    IN `a_station_id` INT
+)
+
+BEGIN
+SELECT 
+    *
+FROM
+    all_scooters
+WHERE
+    station_id = a_station_id;
+END;;
+
+DELIMITER ;
+
+
+
+
+
+
+
 
 --
 -- get specific city by id
@@ -554,6 +633,47 @@ END;;
 
 DELIMITER ;
 
+--
+-- add_zone
+--
+DROP PROCEDURE IF EXISTS `add_zone`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `add_zone`(
+    IN `a_type` VARCHAR(255)
+) 
+BEGIN
+INSERT INTO 
+    zone (
+        `type`
+    )
+VALUES
+    (a_type);
+END;;
+
+DELIMITER ;
+
+--
+-- update_zone_by_id
+--
+DROP PROCEDURE IF EXISTS `update_zone_by_id`;
+
+DELIMITER ;;
+CREATE PROCEDURE `update_zone_by_id`(
+    IN `a_id` INT,
+    IN `a_type` VARCHAR(255)
+) 
+BEGIN
+UPDATE 
+    zone
+SET
+    type = a_type
+WHERE
+    id = a_id;
+END;;
+
+DELIMITER ;
 
 --
 -- get zone by id
@@ -579,6 +699,56 @@ END;;
 
 DELIMITER ;
 
+--
+-- add station
+--
+DROP PROCEDURE IF EXISTS `add_station`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `add_station`(
+    IN `a_name` VARCHAR(255), 
+    IN `a_zone_id` INT,
+    IN `a_longitude` DECIMAL(10,8),
+    IN `a_latitude` DECIMAL(10,8),
+    IN `a_city_id` INT
+)
+BEGIN
+INSERT INTO `station` 
+    (`name`, `zone_id`, `longitude`, `latitude`, `city_id`) 
+VALUES (a_name, a_zone_id, a_longitude, a_latitude, a_city_id);
+END;;
+
+DELIMITER ;
+
+--
+-- update station by id
+--
+DROP PROCEDURE IF EXISTS `update_station_by_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `update_station_by_id`(
+    IN `a_id` INT,
+    IN `a_name` VARCHAR(255), 
+    IN `a_zone_id` INT,
+    IN `a_longitude` DECIMAL(10,8),
+    IN `a_latitude` DECIMAL(10,8),
+    IN `a_city_id` INT
+)
+BEGIN
+UPDATE `station`
+SET 
+    `name` = a_name,
+    `zone_id` = a_zone_id,
+    `longitude` = a_longitude,
+    `latitude` = a_latitude,
+    `city_id` = a_city_id
+WHERE
+    `id` = a_id;
+END;;   
+
+DELIMITER ;
 
 --
 -- get all stations

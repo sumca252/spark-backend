@@ -19,11 +19,21 @@ SELECT
     p.travel_cost,
     p.parking_cost,
     sc.running,
-    sc.speed
+    sc.speed,
+    st.id AS station_id,
+    st.name AS station_name,
+    c.id AS city_id,
+    c.name AS city_name
 FROM
     scooter AS sc
-    JOIN status AS s ON s.id = sc.status_id
-    JOIN price AS p ON p.id = sc.price_id
+    JOIN status AS s 
+        ON s.id = sc.status_id
+    JOIN price AS p 
+        ON p.id = sc.price_id
+    JOIN station AS st 
+        ON st.id = sc.station_id
+    JOIN city AS c 
+        ON c.id = st.city_id
 ORDER BY
     sc.id;
 
@@ -162,7 +172,6 @@ SELECT
     c.name AS city_name,
     c.country,
     z.type AS zone_type,
-    s.scooter_id,
     s.longitude,
     s.latitude
 FROM
@@ -172,6 +181,35 @@ FROM
 ORDER BY
     s.id ASC;
 
+
+--
+-- get all logs
+--
+DROP VIEW IF EXISTS `all_logs`;
+
+CREATE VIEW `all_logs` AS
+SELECT
+    l.id,
+    l.start_time,
+    l.end_time,
+    l.start_longitude,
+    l.end_longitude,
+    l.start_latitude,
+    l.end_latitude,
+    l.customer_id,
+    GROUP_CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    p.start_cost,
+    p.travel_cost,
+    p.parking_cost,
+    l.scooter_id
+FROM
+    logs AS l 
+    JOIN all_customers AS c ON c.id = l.customer_id
+    JOIN price AS p ON p.id = l.price_id
+GROUP BY
+    l.id
+ORDER BY
+    l.id ASC;
 
 
 -- 
