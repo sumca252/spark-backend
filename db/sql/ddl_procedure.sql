@@ -324,6 +324,43 @@ VALUES
         a_role_id
     );
 END;;
+
+DELIMITER ;
+
+--
+-- add user with email
+--
+
+DROP PROCEDURE IF EXISTS `add_user_with_username_or_email`;
+DELIMITER ;;
+
+CREATE PROCEDURE `add_user_with_username_or_email`(
+    IN `a_first_name` VARCHAR(255), 
+    IN `a_last_name` VARCHAR(255), 
+    IN `a_username` VARCHAR(255),  
+    IN `a_email` VARCHAR(255),
+    IN `a_role_id` INT
+)
+BEGIN
+INSERT INTO 
+    `user` (
+        `first_name`, 
+        `last_name`, 
+        `username`,
+        `email`, 
+        `role_id`
+    )
+VALUES 
+    (
+        a_first_name, 
+        a_last_name,
+        a_username,
+        a_email,
+        a_role_id
+    );
+
+END;;
+
 DELIMITER ;
 
 --
@@ -373,12 +410,13 @@ DELIMITER ;
 --
 -- get user by username
 --
-DROP PROCEDURE IF EXISTS `get_user_by_username`;
+DROP PROCEDURE IF EXISTS `get_user_by_username_or_email`;
 
 DELIMITER ;;
 
-CREATE PROCEDURE `get_user_by_username`(
-    IN `a_username` VARCHAR(255)
+CREATE PROCEDURE `get_user_by_username_or_email`(
+    IN `a_username` VARCHAR(255),
+    IN `a_email` VARCHAR(255)
 )
 BEGIN
 SELECT 
@@ -386,7 +424,7 @@ SELECT
 FROM
     all_users
 WHERE
-    username = a_username;
+    username = a_username OR email = a_email;
 END;;
 
 DELIMITER ;

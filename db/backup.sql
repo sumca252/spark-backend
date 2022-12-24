@@ -77,6 +77,7 @@ SET character_set_client = utf8;
   `last_name` tinyint NOT NULL,
   `password` tinyint NOT NULL,
   `email` tinyint NOT NULL,
+  `username` tinyint NOT NULL,
   `phone` tinyint NOT NULL,
   `role` tinyint NOT NULL
 ) ENGINE=MyISAM */;
@@ -112,6 +113,7 @@ SET character_set_client = utf8;
   `first_name` tinyint NOT NULL,
   `last_name` tinyint NOT NULL,
   `email` tinyint NOT NULL,
+  `username` tinyint NOT NULL,
   `phone` tinyint NOT NULL,
   `role` tinyint NOT NULL
 ) ENGINE=MyISAM */;
@@ -216,6 +218,7 @@ SET character_set_client = utf8;
   `last_name` tinyint NOT NULL,
   `password` tinyint NOT NULL,
   `email` tinyint NOT NULL,
+  `username` tinyint NOT NULL,
   `phone` tinyint NOT NULL,
   `role` tinyint NOT NULL
 ) ENGINE=MyISAM */;
@@ -503,17 +506,15 @@ CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL DEFAULT '0',
+  `password` varchar(255) NOT NULL DEFAULT '0',
+  `email` varchar(255) NOT NULL DEFAULT '0',
+  `phone` varchar(255) NOT NULL DEFAULT '0',
   `role_id` int NOT NULL,
   `token` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `last_name` (`last_name`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `phone` (`phone`),
   KEY `role_id` (`role_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -587,7 +588,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`spark`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `all_admins` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`password` AS `password`,`u`.`email` AS `email`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) where (`r`.`role` = 'admin') order by `u`.`id` */;
+/*!50001 VIEW `all_admins` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`password` AS `password`,`u`.`email` AS `email`,`u`.`username` AS `username`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) where (`r`.`role` = 'admin') order by `u`.`id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -625,7 +626,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`spark`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `all_customers` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`email` AS `email`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) where (`r`.`role` = 'customer') order by `u`.`id` */;
+/*!50001 VIEW `all_customers` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`email` AS `email`,`u`.`username` AS `username`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) where (`r`.`role` = 'customer') order by `u`.`id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -720,7 +721,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`spark`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `all_users` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`password` AS `password`,`u`.`email` AS `email`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) order by `u`.`id` */;
+/*!50001 VIEW `all_users` AS select `u`.`id` AS `id`,`u`.`first_name` AS `first_name`,`u`.`last_name` AS `last_name`,`u`.`password` AS `password`,`u`.`email` AS `email`,`u`.`username` AS `username`,`u`.`phone` AS `phone`,`r`.`role` AS `role` from (`user` `u` join `role` `r` on((`r`.`id` = `u`.`role_id`))) order by `u`.`id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -734,4 +735,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20  9:10:27
+-- Dump completed on 2022-12-24  8:43:56
