@@ -43,14 +43,13 @@ const Users = {
             });
         });
 
-        return result;
+        return result ? result : null;
     },
-    getUserByUsername: (username) => {
-        console.log(username);
+    getUserByUsernameOrEmail: (username, email) => {
         const result = new Promise((resolve, reject) => {
             db.query(
-                "CALL get_user_by_username(?)",
-                [username],
+                "CALL get_user_by_username_or_email(?, ?)",
+                [username, email],
                 (err, rows) => {
                     if (err) {
                         reject(err);
@@ -61,7 +60,7 @@ const Users = {
             );
         });
 
-        return result;
+        return result ? result : false;
     },
     createUser: (user) => {
         const hashedPassword = bcrypt.hashSync(user.password, 10);
@@ -85,6 +84,26 @@ const Users = {
                         console.log(err);
                     }
                     resolve(rows[0]);
+                }
+            );
+        });
+    },
+    createUserWithUsernameOrEmail: (
+        firstName,
+        lastName,
+        username,
+        email,
+        roleId
+    ) => {
+        new Promise((resolve, reject) => {
+            db.query(
+                "CALL add_user_with_username_or_email(?, ?, ?, ?, ?)",
+                [firstName, lastName, username, email, roleId],
+                (err) => {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    }
                 }
             );
         });
