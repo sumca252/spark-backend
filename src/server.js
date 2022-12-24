@@ -10,7 +10,10 @@ if (process.env.NODE_ENV !== "production") {
 const port = process.env.PORT || 1337;
 const express = require("express");
 const morgan = require("morgan");
+const session = require("express-session");
+const passport = require("passport");
 const cors = require("cors");
+
 const { graphqlHTTP } = require("express-graphql");
 
 const schema = require("./graphql/schema");
@@ -23,14 +26,37 @@ const httpServer = require("http").createServer(app);
 app.use(express.json());
 
 // for parsing x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL,
+        credentials: true,
+    })
+);
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 24 * 60 * 60 * 100,
+        },
+    })
+);
+
+// initialize passport and passport session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // index route
 const indexRoute = require("./routes/index");
+const authRoutes = require("./routes/auth");
 
 app.use("/api/v1", indexRoute);
+app.use("/api/v1/auth/", authRoutes);
+
 app.disable("x-powered-by");
 
 // log requests to the console in dev mode
