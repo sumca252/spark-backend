@@ -32,8 +32,14 @@ const Cities = {
     addCity: (city) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL add_city(?, ?, ?, ?)",
-                [city.name, city.country, city.longitude, city.latitude],
+                "CALL add_city(?, ?, ?, ?, ?)",
+                [
+                    city.name,
+                    city.country,
+                    city.longitude,
+                    city.latitude,
+                    city.area,
+                ],
                 (err) => {
                     if (err) {
                         reject(err);
@@ -45,13 +51,14 @@ const Cities = {
     updateCityById: (city) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL update_city_by_id(?, ?, ?, ?, ?)",
+                "CALL update_city_by_id(?, ?, ?, ?, ? ,?)",
                 [
                     city.id,
                     city.name,
                     city.country,
                     city.longitude,
                     city.latitude,
+                    city.area,
                 ],
                 (err, rows) => {
                     if (err) {

@@ -259,6 +259,10 @@ const CityType = new GraphQLObjectType({
             description: "The latitude of the city",
             type: new GraphQLNonNull(GraphQLString),
         },
+        area: {
+            description: "The area of the city",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 
