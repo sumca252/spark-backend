@@ -234,13 +234,14 @@ CREATE PROCEDURE `add_city`(
     IN `a_name` VARCHAR(255), 
     IN `a_country` VARCHAR(255), 
     IN `a_longitude` DECIMAL(10, 8), 
-    IN `a_latitude` DECIMAL(10, 8)
+    IN `a_latitude` DECIMAL(10, 8),
+    IN `a_area` DECIMAL(10, 2)
 )
 BEGIN 
 INSERT INTO 
-    `city` (`name`, `country`, `longitude`, `latitude`)
+    `city` (`name`, `country`, `longitude`, `latitude` , `area`)
 VALUES 
-    (a_name, a_country, a_longitude, a_latitude);
+    (a_name, a_country, a_longitude, a_latitude , a_area);
 END;;
 
 DELIMITER ;
@@ -256,7 +257,8 @@ CREATE PROCEDURE `update_city_by_id`(
     IN `a_name` VARCHAR(255), 
     IN `a_country` VARCHAR(255), 
     IN `a_longitude` DECIMAL(10, 8), 
-    IN `a_latitude` DECIMAL(10, 8)
+    IN `a_latitude` DECIMAL(10, 8),
+    IN `a_area` DECIMAL(10, 2)
 )
 BEGIN
 UPDATE 
@@ -265,7 +267,9 @@ SET
     `name` = a_name,
     `country` = a_country,
     `longitude` = a_longitude,
-    `latitude` = a_latitude
+    `latitude` = a_latitude,
+    `area` = a_area
+
 WHERE 
     `id` = a_id;
 END;;

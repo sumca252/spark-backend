@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `city` (
     `country` VARCHAR(255) NOT NULL,
     `longitude` DECIMAL(10, 5) NOT NULL UNIQUE,
     `latitude` DECIMAL(10, 6) NOT NULL UNIQUE,
+    `area` DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -161,10 +162,10 @@ CREATE TABLE IF NOT EXISTS `scooter` (
 --
 CREATE TABLE IF NOT EXISTS `payment` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `payment_method` VARCHAR(255) NOT NULL UNIQUE,
+    `payment_method` VARCHAR(255) NOT NULL,
     `account_id` INT NOT NULL,
     `price_id` INT NOT NULL,
-    `date` DATETIME NOT NULL,
+    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
     FOREIGN KEY (`price_id`) REFERENCES `price` (`id`)
