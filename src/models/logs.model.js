@@ -4,8 +4,8 @@
 const db = require("../config/db/database.js");
 
 const logs = {
-    getAllLogs: async () => {
-        return new Promise((resolve, reject) => {
+    getAllLogs: () => {
+        return new Promise((reject) => {
             db.query("CALL get_all_logs()", (err) => {
                 if (err) {
                     reject(err);
@@ -13,7 +13,7 @@ const logs = {
             });
         });
     },
-    getLogById: async (id) => {
+    getLogById: (id) => {
         return new Promise((resolve, reject) => {
             db.query("CALL get_log_by_id(?)", [id], (err, rows) => {
                 if (err) {
@@ -23,8 +23,8 @@ const logs = {
             });
         });
     },
-    createLog: async (data) => {
-        return new Promise((resolve, reject) => {
+    createLog: (data) => {
+        return new Promise((reject) => {
             db.query(
                 "CALL create_log(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
@@ -47,7 +47,7 @@ const logs = {
         });
     },
     updateLogByScooterId: (data) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((reject) => {
             db.query(
                 "CALL update_log_by_scooter_id(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [

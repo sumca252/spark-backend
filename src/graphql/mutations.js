@@ -9,7 +9,7 @@ const City = require("../models/cities.model");
 const Station = require("../models/stations.model");
 const Zone = require("../models/zones.model");
 const Scooter = require("../models/scooters.model");
-const Log = require("../models/logs.model");
+const Logs = require("../models/logs.model");
 
 const {
     UserType,
@@ -25,14 +25,21 @@ const RootMutationType = new GraphQLObjectType({
     description: "Root Mutation for the application",
     fields: () => ({
         addCity: {
-            // name, country, longitude, latitude
             type: CityType,
             description: "Add a city to the database",
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                country: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
+                name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                country: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 City.addCity(args);
@@ -42,11 +49,21 @@ const RootMutationType = new GraphQLObjectType({
             type: CityType,
             description: "Update a city in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                country: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                country: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 City.updateCityById(args);
@@ -56,11 +73,21 @@ const RootMutationType = new GraphQLObjectType({
             type: StationType,
             description: "Add a station to the database",
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                zone_id: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
-                city_id: { type: new GraphQLNonNull(GraphQLString) },
+                name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                zone_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                city_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Station.addStation(args);
@@ -70,12 +97,24 @@ const RootMutationType = new GraphQLObjectType({
             type: StationType,
             description: "Update a station in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                zone_id: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
-                city_id: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                zone_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                city_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Station.updateStationById(args);
@@ -85,7 +124,9 @@ const RootMutationType = new GraphQLObjectType({
             type: ZoneType,
             description: "Add a zone to the database",
             args: {
-                type: { type: new GraphQLNonNull(GraphQLString) },
+                type: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Zone.addZone(args);
@@ -95,8 +136,12 @@ const RootMutationType = new GraphQLObjectType({
             type: ZoneType,
             description: "Update a zone in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
-                type: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                type: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Zone.updateZoneById(args);
@@ -106,15 +151,30 @@ const RootMutationType = new GraphQLObjectType({
             type: ScooterType,
             description: "Add a scooter to the database",
             args: {
-                // void
-                battery: { type: new GraphQLNonNull(GraphQLString) },
-                status_id: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
-                price_id: { type: new GraphQLNonNull(GraphQLString) },
-                running: { type: new GraphQLNonNull(GraphQLString) },
-                speed: { type: new GraphQLNonNull(GraphQLString) },
-                station_id: { type: new GraphQLNonNull(GraphQLString) },
+                battery: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                status_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                price_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                running: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                speed: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                station_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Scooter.addScooter(args);
@@ -124,15 +184,33 @@ const RootMutationType = new GraphQLObjectType({
             type: ScooterType,
             description: "Update a scooter in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
-                battery: { type: new GraphQLNonNull(GraphQLString) },
-                status_id: { type: new GraphQLNonNull(GraphQLString) },
-                longitude: { type: new GraphQLNonNull(GraphQLString) },
-                latitude: { type: new GraphQLNonNull(GraphQLString) },
-                price_id: { type: new GraphQLNonNull(GraphQLString) },
-                running: { type: new GraphQLNonNull(GraphQLString) },
-                speed: { type: new GraphQLNonNull(GraphQLString) },
-                station_id: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                battery: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                status_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                price_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                running: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                speed: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                station_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Scooter.updateScooterById(args);
@@ -142,7 +220,9 @@ const RootMutationType = new GraphQLObjectType({
             type: ScooterType,
             description: "Delete a scooter in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
             resolve: (parent, args) => {
                 Scooter.deleteScooterById(args.id);
@@ -152,14 +232,26 @@ const RootMutationType = new GraphQLObjectType({
             type: UserType,
             description: "Add a new user to the database",
             args: {
-                first_name: { type: new GraphQLNonNull(GraphQLString) },
-                last_name: { type: new GraphQLNonNull(GraphQLString) },
-                password: { type: new GraphQLNonNull(GraphQLString) },
-                email: { type: new GraphQLNonNull(GraphQLString) },
-                phone: { type: new GraphQLNonNull(GraphQLString) },
-                role_id: { type: new GraphQLNonNull(GraphQLString) },
+                first_name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                last_name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                password: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                email: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                phone: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                role_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
-            resolve: async (parent, args) => {
+            resolve: (parent, args) => {
                 User.createUser(args);
             },
         },
@@ -167,52 +259,105 @@ const RootMutationType = new GraphQLObjectType({
             type: UserType,
             description: "Update a user in the database by id",
             args: {
-                id: { type: new GraphQLNonNull(GraphQLString) },
-                first_name: { type: new GraphQLNonNull(GraphQLString) },
-                last_name: { type: new GraphQLNonNull(GraphQLString) },
-                password: { type: new GraphQLNonNull(GraphQLString) },
-                email: { type: new GraphQLNonNull(GraphQLString) },
-                phone: { type: new GraphQLNonNull(GraphQLString) },
-                role_id: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                first_name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                last_name: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                password: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                email: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                phone: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                role_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
-            resolve: async (parent, args) => {
-                await User.updateUserById(args);
+            resolve: (parent, args) => {
+                User.updateUserById(args);
             },
         },
-        create_log: {
+        createLog: {
             type: LogType,
             description: "Add a new log to the database",
             args: {
-                start_time: { type: new GraphQLNonNull(GraphQLString) },
-                end_time: { type: new GraphQLNonNull(GraphQLString) },
-                start_longitude: { type: new GraphQLNonNull(GraphQLString) },
-                end_longitude: { type: new GraphQLNonNull(GraphQLString) },
-                start_latitude: { type: new GraphQLNonNull(GraphQLString) },
-                end_latitude: { type: new GraphQLNonNull(GraphQLString) },
-                customer_id: { type: new GraphQLNonNull(GraphQLString) },
-                price_id: { type: new GraphQLNonNull(GraphQLString) },
-                scooter_id: { type: new GraphQLNonNull(GraphQLString) },
+                start_time: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_time: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                start_longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                start_latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                customer_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                price_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                scooter_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
-            resolve: async (parent, args) => {
-                await Log.create_log(args);
+            resolve: (parent, args) => {
+                Logs.createLog(args);
             },
         },
-        update_log_by_scooter_id: {
+        updateLogByScooterId: {
             type: LogType,
             description: "Update a log in the database by scooter id",
             args: {
-                start_time: { type: new GraphQLNonNull(GraphQLString) },
-                end_time: { type: new GraphQLNonNull(GraphQLString) },
-                start_longitude: { type: new GraphQLNonNull(GraphQLString) },
-                end_longitude: { type: new GraphQLNonNull(GraphQLString) },
-                start_latitude: { type: new GraphQLNonNull(GraphQLString) },
-                end_latitude: { type: new GraphQLNonNull(GraphQLString) },
-                customer_id: { type: new GraphQLNonNull(GraphQLString) },
-                price_id: { type: new GraphQLNonNull(GraphQLString) },
-                scooter_id: { type: new GraphQLNonNull(GraphQLString) },
+                id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                start_time: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_time: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                start_longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_longitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                start_latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                end_latitude: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                customer_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                price_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                scooter_id: {
+                    type: new GraphQLNonNull(GraphQLString),
+                },
             },
-            resolve: async (parent, args) => {
-                await Log.update_log_by_scooter_id(args);
+            resolve: (parent, args) => {
+                Logs.updateLogByScooterId(args);
             },
         },
     }),

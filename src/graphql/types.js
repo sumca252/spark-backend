@@ -298,50 +298,11 @@ const StationType = new GraphQLObjectType({
 });
 
 const LogType = new GraphQLObjectType({
-    name: "Log",
+    name: "Logs",
     description: "This represents a Log of a User",
     fields: () => ({
         id: {
             description: "The id of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        start_time: {
-            description: "The start time of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        end_time: {
-            description: "The end time of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        start_longitude: {
-            description: "The start longitude of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        end_longitude: {
-            description: "The end longitude of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        start_latitude: {
-            description: "The start latitude of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        end_latitude: {
-            description: "The end latitude of the log",
-        },
-        customer_id: {
-            description: "The customer id of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        customer_name: {
-            description: "The customer name of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        price_id: {
-            description: "The price id of the log",
-            type: new GraphQLNonNull(GraphQLString),
-        },
-        scooter_id: {
-            description: "The scooter id of the log",
             type: new GraphQLNonNull(GraphQLString),
         },
     }),
