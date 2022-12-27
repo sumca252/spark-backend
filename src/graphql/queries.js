@@ -22,6 +22,7 @@ const {
     ZoneType,
     CityType,
     StationType,
+    LogType,
 } = require("./types");
 
 // Models
@@ -35,6 +36,7 @@ const Scooters = require("../models/scooters.model");
 const Zones = require("../models/zones.model");
 const Cities = require("../models/cities.model");
 const Stations = require("../models/stations.model");
+const Logs = require("../models/logs.model");
 
 // Root Query
 const RootQueryType = new GraphQLObjectType({
@@ -309,6 +311,27 @@ const RootQueryType = new GraphQLObjectType({
                 );
 
                 return station;
+            },
+        },
+        getAllLogs: {
+            type: new GraphQLList(LogType),
+            description: "List of all Logs",
+            resolve: async () => {
+                const logs = await Logs.getAllLogs();
+
+                return logs;
+            },
+        },
+        getLogById: {
+            type: new GraphQLList(LogType),
+            description: "A single Log by id",
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const log = await Logs.getLogById(parseInt(args.id));
+
+                return log;
             },
         },
     }),

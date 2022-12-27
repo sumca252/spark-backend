@@ -9,6 +9,7 @@ const City = require("../models/cities.model");
 const Station = require("../models/stations.model");
 const Zone = require("../models/zones.model");
 const Scooter = require("../models/scooters.model");
+const Log = require("../models/logs.model");
 
 const {
     UserType,
@@ -16,6 +17,7 @@ const {
     StationType,
     ZoneType,
     ScooterType,
+    LogType,
 } = require("./types");
 
 const RootMutationType = new GraphQLObjectType({
@@ -174,7 +176,43 @@ const RootMutationType = new GraphQLObjectType({
                 role_id: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: async (parent, args) => {
-                User.updateUserById(args);
+                await User.updateUserById(args);
+            },
+        },
+        create_log: {
+            type: LogType,
+            description: "Add a new log to the database",
+            args: {
+                start_time: { type: new GraphQLNonNull(GraphQLString) },
+                end_time: { type: new GraphQLNonNull(GraphQLString) },
+                start_longitude: { type: new GraphQLNonNull(GraphQLString) },
+                end_longitude: { type: new GraphQLNonNull(GraphQLString) },
+                start_latitude: { type: new GraphQLNonNull(GraphQLString) },
+                end_latitude: { type: new GraphQLNonNull(GraphQLString) },
+                customer_id: { type: new GraphQLNonNull(GraphQLString) },
+                price_id: { type: new GraphQLNonNull(GraphQLString) },
+                scooter_id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                await Log.create_log(args);
+            },
+        },
+        update_log_by_scooter_id: {
+            type: LogType,
+            description: "Update a log in the database by scooter id",
+            args: {
+                start_time: { type: new GraphQLNonNull(GraphQLString) },
+                end_time: { type: new GraphQLNonNull(GraphQLString) },
+                start_longitude: { type: new GraphQLNonNull(GraphQLString) },
+                end_longitude: { type: new GraphQLNonNull(GraphQLString) },
+                start_latitude: { type: new GraphQLNonNull(GraphQLString) },
+                end_latitude: { type: new GraphQLNonNull(GraphQLString) },
+                customer_id: { type: new GraphQLNonNull(GraphQLString) },
+                price_id: { type: new GraphQLNonNull(GraphQLString) },
+                scooter_id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                await Log.update_log_by_scooter_id(args);
             },
         },
     }),
