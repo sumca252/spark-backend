@@ -855,6 +855,112 @@ END;;
 
 DELIMITER ;
 
+--
+-- create log
+--
+DROP PROCEDURE IF EXISTS `create_log`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `create_log`(
+    IN `a_start_time` DATETIME,
+    IN `a_end_time` DATETIME,
+    IN `a_start_longitude` DECIMAL(10,8),
+    IN `a_end_longitude` DECIMAL(10,8),
+    IN `a_start_latitude` DECIMAL(10,8),
+    IN `a_end_latitude` DECIMAL(10,8),
+    IN `a_customer_id` INT,
+    IN `a_price_id` INT,
+    IN `a_scooter_id` INT
+)
+BEGIN
+INSERT INTO `logs` 
+    (`start_time`, `end_time`, `start_longitude`, `end_longitude`, `start_latitude`, `end_latitude`, `customer_id`, `price_id`, `scooter_id`)
+VALUES
+    (a_start_time, a_end_time, a_start_longitude, a_end_longitude, a_start_latitude, a_end_latitude, a_customer_id, a_price_id, a_scooter_id);
+END;;
+
+DELIMITER ;
+
+--
+-- get all logs
+--
+
+DROP PROCEDURE IF EXISTS `get_all_logs`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_logs`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_logs;
+END;;
+
+DELIMITER ;
+
+--
+-- get log by id
+--
+DROP PROCEDURE IF EXISTS `get_log_by_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_log_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_logs
+WHERE
+    id = a_id;
+END;;
+
+DELIMITER ;
+
+--
+-- update log by scooter id
+-- 
+DROP PROCEDURE IF EXISTS `update_log_by_scooter_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `update_log_by_scooter_id`(
+    IN `a_scooter_id` INT,
+    IN `a_start_time` DATETIME,
+    IN `a_end_time` DATETIME,
+    IN `a_start_longitude` DECIMAL(10,8),
+    IN `a_end_longitude` DECIMAL(10,8),
+    IN `a_start_latitude` DECIMAL(10,8),
+    IN `a_end_latitude` DECIMAL(10,8),
+    IN `a_customer_id` INT,
+    IN `a_price_id` INT
+)
+BEGIN
+UPDATE `logs`
+SET 
+    `start_time` = a_start_time,
+    `end_time` = a_end_time,
+    `start_longitude` = a_start_longitude,
+    `end_longitude` = a_end_longitude,
+    `start_latitude` = a_start_latitude,
+    `end_latitude` = a_end_latitude,
+    `customer_id` = a_customer_id,
+    `price_id` = a_price_id
+WHERE
+    `scooter_id` = a_scooter_id;
+END;;
+
+DELIMITER ;
+
+
+
+
+
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------
