@@ -305,6 +305,33 @@ const LogType = new GraphQLObjectType({
             description: "The id of the log",
             type: new GraphQLNonNull(GraphQLString),
         },
+        start_time: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        end_time: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        start_longitude: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        end_longitude: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        start_latitude: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        end_latitude: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        customer_id: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        price_id: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        scooter_id: {
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 

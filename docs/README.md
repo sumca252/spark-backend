@@ -9,6 +9,7 @@
     * [Account](#account)
     * [City](#city)
     * [Customer](#customer)
+    * [Logs](#logs)
     * [Price](#price)
     * [Role](#role)
     * [Scooter](#scooter)
@@ -92,6 +93,20 @@ A single User by email
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">email</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getUserByUsername</strong></td>
+<td valign="top">[<a href="#user">User</a>]</td>
+<td>
+
+A single User by username
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">username</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -197,6 +212,34 @@ List of all Scooters
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>getAllScooterInCityByCityId</strong></td>
+<td valign="top">[<a href="#scooter">Scooter</a>]</td>
+<td>
+
+List of all Scooters in a city by city id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getAllScooterInStationByStationId</strong></td>
+<td valign="top">[<a href="#scooter">Scooter</a>]</td>
+<td>
+
+List of all Scooters in a station by station id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getScooterById</strong></td>
 <td valign="top">[<a href="#scooter">Scooter</a>]</td>
 <td>
@@ -279,6 +322,29 @@ A single Station by id
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>getAllLogs</strong></td>
+<td valign="top">[<a href="#logs">Logs</a>]</td>
+<td>
+
+List of all Logs
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getLogById</strong></td>
+<td valign="top">[<a href="#logs">Logs</a>]</td>
+<td>
+
+A single Log by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
@@ -296,11 +362,297 @@ Root Mutation for the application
 </thead>
 <tbody>
 <tr>
+<td colspan="2" valign="top"><strong>addCity</strong></td>
+<td valign="top"><a href="#city">City</a></td>
+<td>
+
+Add a city to the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">country</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>updateCityById</strong></td>
+<td valign="top"><a href="#city">City</a></td>
+<td>
+
+Update a city in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">country</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>addStation</strong></td>
+<td valign="top"><a href="#station">Station</a></td>
+<td>
+
+Add a station to the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">zone_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">city_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>updateStationById</strong></td>
+<td valign="top"><a href="#station">Station</a></td>
+<td>
+
+Update a station in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">zone_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">city_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>addZone</strong></td>
+<td valign="top"><a href="#zone">Zone</a></td>
+<td>
+
+Add a zone to the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>updateZoneById</strong></td>
+<td valign="top"><a href="#zone">Zone</a></td>
+<td>
+
+Update a zone in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">type</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>addScooter</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Add a scooter to the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">battery</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">status_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">price_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">running</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">speed</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">station_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>updateScooterById</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Update a scooter in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">battery</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">status_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">price_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">running</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">speed</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">station_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>deleteScooterById</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Delete a scooter in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>createUser</strong></td>
 <td valign="top"><a href="#user">User</a></td>
 <td>
 
-Add a user to the database
+Add a new user to the database
 
 </td>
 </tr>
@@ -339,7 +691,7 @@ Add a user to the database
 <td valign="top"><a href="#user">User</a></td>
 <td>
 
-Update a user in the database
+Update a user in the database by id
 
 </td>
 </tr>
@@ -375,6 +727,119 @@ Update a user in the database
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">role_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>createLog</strong></td>
+<td valign="top"><a href="#logs">Logs</a></td>
+<td>
+
+Add a new log to the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_time</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_time</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customer_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">price_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">scooter_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>updateLogByScooterId</strong></td>
+<td valign="top"><a href="#logs">Logs</a></td>
+<td>
+
+Update a log in the database by scooter id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_time</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_time</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">start_latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">end_latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customer_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">price_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">scooter_id</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -495,6 +960,15 @@ The latitude of the city
 
 </td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>area</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The area of the city
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -527,6 +1001,32 @@ The id of the customer
 <td>
 
 Customer's user
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Logs
+
+This represents a Log of a User
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>id</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The id of the log
 
 </td>
 </tr>
@@ -707,6 +1207,15 @@ The speed of the scooter
 
 </td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>station</strong></td>
+<td valign="top"><a href="#station">Station</a></td>
+<td>
+
+The station where the scooter is located
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -743,7 +1252,7 @@ The name of the station
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>city_id</strong></td>
+<td colspan="2" valign="top"><strong>city_name</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
@@ -757,15 +1266,6 @@ The city where the station is located
 <td>
 
 The zone of the station
-
-</td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>scooter_id</strong></td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td>
-
-The scooter of the station
 
 </td>
 </tr>
