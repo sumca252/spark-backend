@@ -5,11 +5,13 @@ const db = require("../config/db/database.js");
 
 const logs = {
     getAllLogs: () => {
-        return new Promise((reject) => {
-            db.query("CALL get_all_logs()", (err) => {
+        return new Promise((resolve, reject) => {
+            db.query("CALL get_all_logs()", (err, rows) => {
                 if (err) {
                     reject(err);
                 }
+
+                resolve(rows[0]);
             });
         });
     },
