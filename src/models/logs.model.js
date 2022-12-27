@@ -1,8 +1,6 @@
-/* 
-create_log
-get_all_logs
-get_log_by_id
-update_log_by_scooter_id */
+/**
+ * Logs model
+ */
 const db = require("../config/db/database.js");
 
 const logs = {
