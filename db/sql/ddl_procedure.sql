@@ -19,6 +19,34 @@ END;;
 DELIMITER ;
 
 --
+-- get scooter by scooter id 
+--
+DROP PROCEDURE IF EXISTS `get_city_by_scooter_id`;
+
+DELIMITER ;;
+CREATE PROCEDURE `get_city_by_scooter_id`(
+    IN `a_scooter_id` INT
+)
+
+BEGIN
+SELECT 
+    sc.id,
+    ac.longitude,
+    ac.latitude,
+    ac.area
+FROM
+    scooter AS sc
+    JOIN all_stations AS st
+        ON sc.station_id = st.id
+    JOIN all_cities AS ac
+        ON st.city_id = ac.id 
+WHERE
+    sc.id = a_scooter_id ;
+END;;
+
+DELIMITER ;
+--
+--
 -- add scooter PROCEDURE
 --
 DROP PROCEDURE IF EXISTS `add_scooter`;
