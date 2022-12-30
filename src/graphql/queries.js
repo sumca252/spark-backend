@@ -97,16 +97,17 @@ const RootQueryType = new GraphQLObjectType({
                 return user;
             },
         },
-        getUserByUsername: {
+        getUserByUsernameOrEmail: {
             type: new GraphQLList(UserType),
             description: "A single User by username",
             args: {
                 username: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: async (parent, args) => {
-                const user = await Users.getUserByUsername(args.username);
+                const user = args.username ? args.username : args.email;
+                const result = await Users.getUserByUsernameOrEmail(user);
 
-                return user;
+                return result;
             },
         },
         getAllCustomers: {
