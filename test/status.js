@@ -29,7 +29,6 @@ describe("/api/v1/graphql", () => {
                     res.should.have.status(200);
                     res.body.should.be.a("object");
                     res.body.data.getAllStatuses.should.be.a("array");
-                    res.body.data.getAllStatuses.length.should.be.eq(6);
 
                     done();
                 });
