@@ -156,5 +156,42 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should return a station by city id and zone id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        {
+                            getStationByCityIdAndZoneId(cityId:"1", zoneId:"1") {
+                                id
+                                longitude
+                                latitude
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.getStationByCityIdAndZoneId.should.be.a(
+                        "array"
+                    );
+                    res.body.data.getStationByCityIdAndZoneId[0].should.be.a(
+                        "object"
+                    );
+                    res.body.data.getStationByCityIdAndZoneId[0].should.have.property(
+                        "id"
+                    );
+
+                    res.body.data.getStationByCityIdAndZoneId[0].should.have.property(
+                        "longitude"
+                    );
+                    res.body.data.getStationByCityIdAndZoneId[0].should.have.property(
+                        "latitude"
+                    );
+
+                    done();
+                });
+        });
     });
 });

@@ -851,6 +851,32 @@ END;;
 DELIMITER ;
 
 --
+-- get station by city id and zone id
+--
+DROP PROCEDURE IF EXISTS `get_station_by_city_id_and_zone_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_station_by_city_id_and_zone_id`(
+    IN `a_city_id` INT,
+    IN `a_zone_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    station AS s
+WHERE
+    city_id = a_city_id AND 
+    zone_id = a_zone_id;
+
+END;;
+
+DELIMITER ;
+
+
+
+--
 -- create log
 --
 DROP PROCEDURE IF EXISTS `create_log`;
