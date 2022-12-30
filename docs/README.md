@@ -300,6 +300,20 @@ A single City by id
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>getCityByScooterId</strong></td>
+<td valign="top">[<a href="#city">City</a>]</td>
+<td>
+
+A single City by scooter id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getAllStations</strong></td>
 <td valign="top">[<a href="#station">Station</a>]</td>
 <td>
