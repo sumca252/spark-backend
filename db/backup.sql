@@ -1,13 +1,15 @@
--- MySQL dump 10.17  Distrib 10.3.14-MariaDB, for CYGWIN (x86_64)
+CREATE DATABASE  IF NOT EXISTS `sparkdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sparkdb`;
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sparkdb
+-- Host: localhost    Database: sparkdb
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +23,7 @@
 
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
   `id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
@@ -45,184 +47,173 @@ INSERT INTO `account` VALUES (1,1,1000.00,'CARD','0000-00-00 00:00:00'),(3,3,100
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `all_accounts`
+-- Temporary view structure for view `all_accounts`
 --
 
 DROP TABLE IF EXISTS `all_accounts`;
 /*!50001 DROP VIEW IF EXISTS `all_accounts`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_accounts` (
-  `id` tinyint NOT NULL,
-  `customer_id` tinyint NOT NULL,
-  `user_id` tinyint NOT NULL,
-  `first_name` tinyint NOT NULL,
-  `last_name` tinyint NOT NULL,
-  `balance` tinyint NOT NULL,
-  `payment_method` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_accounts` AS SELECT 
+ 1 AS `id`,
+ 1 AS `customer_id`,
+ 1 AS `user_id`,
+ 1 AS `first_name`,
+ 1 AS `last_name`,
+ 1 AS `balance`,
+ 1 AS `payment_method`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_admins`
+-- Temporary view structure for view `all_admins`
 --
 
 DROP TABLE IF EXISTS `all_admins`;
 /*!50001 DROP VIEW IF EXISTS `all_admins`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_admins` (
-  `id` tinyint NOT NULL,
-  `first_name` tinyint NOT NULL,
-  `last_name` tinyint NOT NULL,
-  `password` tinyint NOT NULL,
-  `email` tinyint NOT NULL,
-  `username` tinyint NOT NULL,
-  `phone` tinyint NOT NULL,
-  `role` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_admins` AS SELECT 
+ 1 AS `id`,
+ 1 AS `first_name`,
+ 1 AS `last_name`,
+ 1 AS `password`,
+ 1 AS `email`,
+ 1 AS `username`,
+ 1 AS `phone`,
+ 1 AS `role`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_cities`
+-- Temporary view structure for view `all_cities`
 --
 
 DROP TABLE IF EXISTS `all_cities`;
 /*!50001 DROP VIEW IF EXISTS `all_cities`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_cities` (
-  `id` tinyint NOT NULL,
-  `name` tinyint NOT NULL,
-  `country` tinyint NOT NULL,
-  `longitude` tinyint NOT NULL,
-  `latitude` tinyint NOT NULL,
-  `area` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_cities` AS SELECT 
+ 1 AS `id`,
+ 1 AS `name`,
+ 1 AS `country`,
+ 1 AS `longitude`,
+ 1 AS `latitude`,
+ 1 AS `area`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_customers`
+-- Temporary view structure for view `all_customers`
 --
 
 DROP TABLE IF EXISTS `all_customers`;
 /*!50001 DROP VIEW IF EXISTS `all_customers`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_customers` (
-  `id` tinyint NOT NULL,
-  `first_name` tinyint NOT NULL,
-  `last_name` tinyint NOT NULL,
-  `email` tinyint NOT NULL,
-  `username` tinyint NOT NULL,
-  `phone` tinyint NOT NULL,
-  `role` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_customers` AS SELECT 
+ 1 AS `id`,
+ 1 AS `first_name`,
+ 1 AS `last_name`,
+ 1 AS `email`,
+ 1 AS `username`,
+ 1 AS `phone`,
+ 1 AS `role`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_logs`
+-- Temporary view structure for view `all_logs`
 --
 
 DROP TABLE IF EXISTS `all_logs`;
 /*!50001 DROP VIEW IF EXISTS `all_logs`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_logs` (
-  `id` tinyint NOT NULL,
-  `start_time` tinyint NOT NULL,
-  `end_time` tinyint NOT NULL,
-  `start_longitude` tinyint NOT NULL,
-  `end_longitude` tinyint NOT NULL,
-  `start_latitude` tinyint NOT NULL,
-  `end_latitude` tinyint NOT NULL,
-  `customer_id` tinyint NOT NULL,
-  `customer_name` tinyint NOT NULL,
-  `start_cost` tinyint NOT NULL,
-  `travel_cost` tinyint NOT NULL,
-  `parking_cost` tinyint NOT NULL,
-  `scooter_id` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_logs` AS SELECT 
+ 1 AS `id`,
+ 1 AS `start_time`,
+ 1 AS `end_time`,
+ 1 AS `start_longitude`,
+ 1 AS `end_longitude`,
+ 1 AS `start_latitude`,
+ 1 AS `end_latitude`,
+ 1 AS `customer_id`,
+ 1 AS `customer_name`,
+ 1 AS `price_id`,
+ 1 AS `scooter_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_roles`
+-- Temporary view structure for view `all_roles`
 --
 
 DROP TABLE IF EXISTS `all_roles`;
 /*!50001 DROP VIEW IF EXISTS `all_roles`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_roles` (
-  `id` tinyint NOT NULL,
-  `role` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_roles` AS SELECT 
+ 1 AS `id`,
+ 1 AS `role`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_scooters`
+-- Temporary view structure for view `all_scooters`
 --
 
 DROP TABLE IF EXISTS `all_scooters`;
 /*!50001 DROP VIEW IF EXISTS `all_scooters`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_scooters` (
-  `id` tinyint NOT NULL,
-  `battery` tinyint NOT NULL,
-  `status` tinyint NOT NULL,
-  `longitude` tinyint NOT NULL,
-  `latitude` tinyint NOT NULL,
-  `start_cost` tinyint NOT NULL,
-  `travel_cost` tinyint NOT NULL,
-  `parking_cost` tinyint NOT NULL,
-  `running` tinyint NOT NULL,
-  `speed` tinyint NOT NULL,
-  `station_id` tinyint NOT NULL,
-  `station_name` tinyint NOT NULL,
-  `city_id` tinyint NOT NULL,
-  `city_name` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_scooters` AS SELECT 
+ 1 AS `id`,
+ 1 AS `battery`,
+ 1 AS `status`,
+ 1 AS `longitude`,
+ 1 AS `latitude`,
+ 1 AS `start_cost`,
+ 1 AS `travel_cost`,
+ 1 AS `parking_cost`,
+ 1 AS `running`,
+ 1 AS `speed`,
+ 1 AS `station_id`,
+ 1 AS `station_name`,
+ 1 AS `city_id`,
+ 1 AS `city_name`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_stations`
+-- Temporary view structure for view `all_stations`
 --
 
 DROP TABLE IF EXISTS `all_stations`;
 /*!50001 DROP VIEW IF EXISTS `all_stations`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_stations` (
-  `id` tinyint NOT NULL,
-  `station_name` tinyint NOT NULL,
-  `city_id` tinyint NOT NULL,
-  `city_name` tinyint NOT NULL,
-  `country` tinyint NOT NULL,
-  `zone_type` tinyint NOT NULL,
-  `longitude` tinyint NOT NULL,
-  `latitude` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_stations` AS SELECT 
+ 1 AS `id`,
+ 1 AS `station_name`,
+ 1 AS `city_id`,
+ 1 AS `city_name`,
+ 1 AS `country`,
+ 1 AS `zone_type`,
+ 1 AS `longitude`,
+ 1 AS `latitude`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `all_users`
+-- Temporary view structure for view `all_users`
 --
 
 DROP TABLE IF EXISTS `all_users`;
 /*!50001 DROP VIEW IF EXISTS `all_users`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `all_users` (
-  `id` tinyint NOT NULL,
-  `first_name` tinyint NOT NULL,
-  `last_name` tinyint NOT NULL,
-  `password` tinyint NOT NULL,
-  `email` tinyint NOT NULL,
-  `username` tinyint NOT NULL,
-  `phone` tinyint NOT NULL,
-  `role` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `all_users` AS SELECT 
+ 1 AS `id`,
+ 1 AS `first_name`,
+ 1 AS `last_name`,
+ 1 AS `password`,
+ 1 AS `email`,
+ 1 AS `username`,
+ 1 AS `phone`,
+ 1 AS `role`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -231,7 +222,7 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `city` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -262,7 +253,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -288,14 +279,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `logs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
+  `start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `start_longitude` decimal(10,8) NOT NULL,
-  `start_latitude` decimal(10,8) NOT NULL,
   `end_longitude` decimal(10,8) NOT NULL,
+  `start_latitude` decimal(10,8) NOT NULL,
   `end_latitude` decimal(10,8) NOT NULL,
   `customer_id` int NOT NULL,
   `price_id` int NOT NULL,
@@ -325,7 +316,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment` (
   `id` int NOT NULL AUTO_INCREMENT,
   `payment_method` varchar(255) NOT NULL,
@@ -356,7 +347,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `price`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `price` (
   `id` int NOT NULL AUTO_INCREMENT,
   `start_cost` decimal(10,2) NOT NULL,
@@ -382,7 +373,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `role` varchar(255) NOT NULL,
@@ -407,7 +398,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `scooter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scooter` (
   `id` int NOT NULL AUTO_INCREMENT,
   `battery` int NOT NULL,
@@ -445,7 +436,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `station`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `station` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -477,7 +468,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status` (
   `id` int NOT NULL AUTO_INCREMENT,
   `status` varchar(255) NOT NULL,
@@ -502,7 +493,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
@@ -537,7 +528,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `zone`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `zone` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -557,10 +548,1139 @@ INSERT INTO `zone` VALUES (3,'Bike Station'),(1,'Charging Station'),(4,'Maintena
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'sparkdb'
+--
+
+--
+-- Dumping routines for database 'sparkdb'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `add_city` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_city`(
+    IN `a_name` VARCHAR(255), 
+    IN `a_country` VARCHAR(255), 
+    IN `a_longitude` DECIMAL(10, 8), 
+    IN `a_latitude` DECIMAL(10, 8),
+    IN `a_area` DECIMAL(10, 2)
+)
+BEGIN 
+INSERT INTO 
+    `city` (`name`, `country`, `longitude`, `latitude` , `area`)
+VALUES 
+    (a_name, a_country, a_longitude, a_latitude , a_area);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_scooter` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_scooter`(
+    IN `a_battery` INT, 
+    IN `a_status_id` INT, 
+    IN `a_longitude` DECIMAL(10, 8), 
+    IN `a_latitude` DECIMAL(10, 8), 
+    IN `a_price_id` INT,
+    IN `a_running` BOOLEAN,
+    IN `a_speed` INT,
+    IN `a_station_id` INT
+)
+BEGIN 
+INSERT INTO 
+    `scooter` (
+        `battery`, 
+        `status_id`, 
+        `longitude`,
+        `latitude`, 
+        `price_id`, 
+        `running`, 
+        `speed`, 
+        `station_id`
+    )
+VALUES 
+    (
+        a_battery, 
+        a_status_id, 
+        a_longitude, 
+        a_latitude, 
+        a_price_id, 
+        a_running, 
+        a_speed, 
+        a_station_id
+    );
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_station` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_station`(
+    IN `a_name` VARCHAR(255), 
+    IN `a_zone_id` INT,
+    IN `a_longitude` DECIMAL(10,8),
+    IN `a_latitude` DECIMAL(10,8),
+    IN `a_city_id` INT
+)
+BEGIN
+INSERT INTO `station` 
+    (`name`, `zone_id`, `longitude`, `latitude`, `city_id`) 
+VALUES (a_name, a_zone_id, a_longitude, a_latitude, a_city_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_user` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_user`(
+    IN `a_first_name` VARCHAR(255), 
+    IN `a_last_name` VARCHAR(255), 
+    IN `a_password` VARCHAR(255), 
+    IN `a_email` VARCHAR(255), 
+    IN `a_phone` VARCHAR(255), 
+    IN `a_role_id` INT
+)
+BEGIN 
+INSERT INTO 
+    `user` (
+        `first_name`, 
+        `last_name`, 
+        `password`, 
+        `email`, 
+        `phone`, 
+        `role_id`
+    )
+VALUES 
+    (
+        a_first_name, 
+        a_last_name,
+        a_password,
+        a_email,
+        a_phone,
+        a_role_id
+    );
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_user_with_username_or_email` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_user_with_username_or_email`(
+    IN `a_first_name` VARCHAR(255), 
+    IN `a_last_name` VARCHAR(255), 
+    IN `a_username` VARCHAR(255),  
+    IN `a_email` VARCHAR(255),
+    IN `a_role_id` INT
+)
+BEGIN
+INSERT INTO 
+    `user` (
+        `first_name`, 
+        `last_name`, 
+        `username`,
+        `email`, 
+        `role_id`
+    )
+VALUES 
+    (
+        a_first_name, 
+        a_last_name,
+        a_username,
+        a_email,
+        a_role_id
+    );
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_zone` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `add_zone`(
+    IN `a_type` VARCHAR(255)
+)
+BEGIN
+INSERT INTO 
+    zone (
+        `type`
+    )
+VALUES
+    (a_type);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `create_log` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `create_log`(
+    IN `a_start_time` DATETIME,
+    IN `a_end_time` DATETIME,
+    IN `a_start_longitude` DECIMAL(10,8),
+    IN `a_end_longitude` DECIMAL(10,8),
+    IN `a_start_latitude` DECIMAL(10,8),
+    IN `a_end_latitude` DECIMAL(10,8),
+    IN `a_customer_id` INT,
+    IN `a_price_id` INT,
+    IN `a_scooter_id` INT
+)
+BEGIN
+INSERT INTO `logs` 
+    (`start_time`, `end_time`, `start_longitude`, `end_longitude`, `start_latitude`, `end_latitude`, `customer_id`, `price_id`, `scooter_id`)
+VALUES
+    (a_start_time, a_end_time, a_start_longitude, a_end_longitude, a_start_latitude, a_end_latitude, a_customer_id, a_price_id, a_scooter_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_scooter_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `delete_scooter_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+UPDATE 
+    `scooter`
+SET 
+    `status_id` = 6
+WHERE 
+    `id` = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_account_by_customer_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_account_by_customer_id`(
+    IN `a_customer_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_accounts
+WHERE
+    customer_id = a_customer_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_accounts` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_accounts`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_accounts;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_cities` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_cities`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_cities;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_customers` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_customers`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_customers;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_logs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_logs`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_logs;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_prices` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_prices`()
+BEGIN
+SELECT 
+    *
+FROM
+    price;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_roles` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_roles`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_roles;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_scooters` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_scooters`()
+BEGIN
+SELECT 
+    * 
+FROM 
+    all_scooters;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_scooters_in_city_by_city_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_scooters_in_city_by_city_id`(
+    IN `a_city_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_scooters
+WHERE
+    city_id = a_city_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_scooters_in_station_by_station_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_scooters_in_station_by_station_id`(
+    IN `a_station_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_scooters
+WHERE
+    station_id = a_station_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_stations` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_stations`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_stations;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_statuses` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_statuses`()
+BEGIN
+SELECT 
+    *
+FROM
+    status
+ORDER BY id ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_users` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_users`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_users;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_all_zones` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_all_zones`()
+BEGIN
+SELECT 
+    *
+FROM
+    zone
+ORDER BY id ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_city_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_city_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_cities
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_customer_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_customer_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_customers
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_log_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_log_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_logs
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_price_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_price_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    price
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_role_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_role_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_roles
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_scooter_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_scooter_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_scooters
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_station_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_station_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_stations
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_status_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_status_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    status
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_user_by_email` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_user_by_email`(
+    IN `a_email` VARCHAR(255)
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_users
+WHERE
+    email = a_email;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_user_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_user_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_users
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_user_by_username_or_email` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_user_by_username_or_email`(
+    IN `a_username` VARCHAR(255),
+    IN `a_email` VARCHAR(255)
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_users
+WHERE
+    username = a_username OR email = a_email;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_zone_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `get_zone_by_id`(
+    IN `a_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+
+    zone
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_city_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_city_by_id`(
+    IN `a_id` INT,
+    IN `a_name` VARCHAR(255), 
+    IN `a_country` VARCHAR(255), 
+    IN `a_longitude` DECIMAL(10, 8), 
+    IN `a_latitude` DECIMAL(10, 8),
+    IN `a_area` DECIMAL(10, 2)
+)
+BEGIN
+UPDATE 
+    `city`
+SET 
+    `name` = a_name,
+    `country` = a_country,
+    `longitude` = a_longitude,
+    `latitude` = a_latitude,
+    `area` = a_area
+
+WHERE 
+    `id` = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_log_by_scooter_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_log_by_scooter_id`(
+    IN `a_scooter_id` INT,
+    IN `a_start_time` DATETIME,
+    IN `a_end_time` DATETIME,
+    IN `a_start_longitude` DECIMAL(10,8),
+    IN `a_end_longitude` DECIMAL(10,8),
+    IN `a_start_latitude` DECIMAL(10,8),
+    IN `a_end_latitude` DECIMAL(10,8),
+    IN `a_customer_id` INT,
+    IN `a_price_id` INT
+)
+BEGIN
+UPDATE `logs`
+SET 
+    `start_time` = a_start_time,
+    `end_time` = a_end_time,
+    `start_longitude` = a_start_longitude,
+    `end_longitude` = a_end_longitude,
+    `start_latitude` = a_start_latitude,
+    `end_latitude` = a_end_latitude,
+    `customer_id` = a_customer_id,
+    `price_id` = a_price_id
+WHERE
+    `scooter_id` = a_scooter_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_scooter_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_scooter_by_id`(
+    IN `a_id` INT,
+    IN `a_battery` INT, 
+    IN `a_status_id` INT, 
+    IN `a_longitude` DECIMAL(10, 8), 
+    IN `a_latitude` DECIMAL(10, 8), 
+    IN `a_price_id` INT,
+    IN `a_running` BOOLEAN,
+    IN `a_speed` INT,
+    IN `a_station_id` INT
+)
+BEGIN
+UPDATE 
+    `scooter`
+SET 
+    `battery` = a_battery,
+    `status_id` = a_status_id,
+    `longitude` = a_longitude,
+    `latitude` = a_latitude,
+    `price_id` = a_price_id,
+    `running` = a_running,
+    `speed` = a_speed
+WHERE 
+    `id` = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_station_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_station_by_id`(
+    IN `a_id` INT,
+    IN `a_name` VARCHAR(255), 
+    IN `a_zone_id` INT,
+    IN `a_longitude` DECIMAL(10,8),
+    IN `a_latitude` DECIMAL(10,8),
+    IN `a_city_id` INT
+)
+BEGIN
+UPDATE `station`
+SET 
+    `name` = a_name,
+    `zone_id` = a_zone_id,
+    `longitude` = a_longitude,
+    `latitude` = a_latitude,
+    `city_id` = a_city_id
+WHERE
+    `id` = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_user_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_user_by_id`(
+    IN `a_id` INT,
+    IN `a_first_name` VARCHAR(255), 
+    IN `a_last_name` VARCHAR(255), 
+    IN `a_password` VARCHAR(255), 
+    IN `a_email` VARCHAR(255), 
+    IN `a_phone` VARCHAR(255), 
+    IN `a_role_id` INT
+)
+BEGIN
+UPDATE 
+    `user`
+SET 
+    `first_name` = a_first_name,
+    `last_name` = a_last_name,
+    `password` = a_password,
+    `email` = a_email,
+    `phone` = a_phone,
+    `role_id` = a_role_id
+WHERE 
+    `id` = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_zone_by_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`spark`@`%` PROCEDURE `update_zone_by_id`(
+    IN `a_id` INT,
+    IN `a_type` VARCHAR(255)
+)
+BEGIN
+UPDATE 
+    zone
+SET
+    type = a_type
+WHERE
+    id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
 -- Final view structure for view `all_accounts`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_accounts`*/;
 /*!50001 DROP VIEW IF EXISTS `all_accounts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -579,7 +1699,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_admins`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_admins`*/;
 /*!50001 DROP VIEW IF EXISTS `all_admins`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -598,7 +1717,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_cities`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_cities`*/;
 /*!50001 DROP VIEW IF EXISTS `all_cities`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -617,7 +1735,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_customers`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_customers`*/;
 /*!50001 DROP VIEW IF EXISTS `all_customers`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -636,7 +1753,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_logs`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_logs`*/;
 /*!50001 DROP VIEW IF EXISTS `all_logs`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -646,7 +1762,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`spark`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `all_logs` AS select `l`.`id` AS `id`,`l`.`start_time` AS `start_time`,`l`.`end_time` AS `end_time`,`l`.`start_longitude` AS `start_longitude`,`l`.`end_longitude` AS `end_longitude`,`l`.`start_latitude` AS `start_latitude`,`l`.`end_latitude` AS `end_latitude`,`l`.`customer_id` AS `customer_id`,group_concat(`c`.`first_name`,' ',`c`.`last_name` separator ',') AS `customer_name`,`p`.`start_cost` AS `start_cost`,`p`.`travel_cost` AS `travel_cost`,`p`.`parking_cost` AS `parking_cost`,`l`.`scooter_id` AS `scooter_id` from ((`logs` `l` join `all_customers` `c` on((`c`.`id` = `l`.`customer_id`))) join `price` `p` on((`p`.`id` = `l`.`price_id`))) group by `l`.`id` order by `l`.`id` */;
+/*!50001 VIEW `all_logs` AS select `l`.`id` AS `id`,`l`.`start_time` AS `start_time`,`l`.`end_time` AS `end_time`,`l`.`start_longitude` AS `start_longitude`,`l`.`end_longitude` AS `end_longitude`,`l`.`start_latitude` AS `start_latitude`,`l`.`end_latitude` AS `end_latitude`,`l`.`customer_id` AS `customer_id`,group_concat(`c`.`first_name`,' ',`c`.`last_name` separator ',') AS `customer_name`,`l`.`price_id` AS `price_id`,`l`.`scooter_id` AS `scooter_id` from ((`logs` `l` join `all_customers` `c` on((`c`.`id` = `l`.`customer_id`))) join `price` `p` on((`p`.`id` = `l`.`price_id`))) group by `l`.`id` order by `l`.`id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -655,7 +1771,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_roles`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_roles`*/;
 /*!50001 DROP VIEW IF EXISTS `all_roles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -674,7 +1789,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_scooters`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_scooters`*/;
 /*!50001 DROP VIEW IF EXISTS `all_scooters`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -693,7 +1807,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_stations`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_stations`*/;
 /*!50001 DROP VIEW IF EXISTS `all_stations`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -712,7 +1825,6 @@ UNLOCK TABLES;
 -- Final view structure for view `all_users`
 --
 
-/*!50001 DROP TABLE IF EXISTS `all_users`*/;
 /*!50001 DROP VIEW IF EXISTS `all_users`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -736,4 +1848,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-27  5:11:38
+-- Dump completed on 2022-12-30  9:18:02
