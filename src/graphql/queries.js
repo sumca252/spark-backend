@@ -290,6 +290,18 @@ const RootQueryType = new GraphQLObjectType({
                 return city;
             },
         },
+        getCityByScooterId: {
+            type: new GraphQLList(CityType),
+            description: "A single City by scooter id",
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const city = await Cities.getCityByScooterId(parseInt(args.id));
+
+                return city;
+            },
+        },
         getAllStations: {
             type: new GraphQLList(StationType),
             description: "List of all Stations",

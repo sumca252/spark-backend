@@ -29,6 +29,19 @@ const Cities = {
 
         return result;
     },
+    getCityByScooterId: (id) => {
+        const result = new Promise((resolve, reject) => {
+            db.query("CALL get_city_by_scooter_id(?)", [id], (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows[0]);
+            });
+        });
+
+        return result;
+    },
     addCity: (city) => {
         new Promise((resolve, reject) => {
             db.query(
