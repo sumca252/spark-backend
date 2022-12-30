@@ -38,7 +38,7 @@ const logs = {
                     data.end_latitude,
                     data.customer_id,
                     data.price_id,
-                    data.scooter_id,
+                    data.id,
                 ],
                 (err) => {
                     if (err) {
@@ -48,10 +48,10 @@ const logs = {
             );
         });
     },
-    updateLogByScooterId: (data) => {
+    updateLogByLogId: (data) => {
         return new Promise((reject) => {
             db.query(
-                "CALL update_log_by_scooter_id(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "CALL update_log_by_log_id(?, ?, ?, ?, ?, ?, ?, ?, ? , ?)",
                 [
                     data.start_time,
                     data.end_time,
@@ -62,6 +62,7 @@ const logs = {
                     data.customer_id,
                     data.price_id,
                     data.scooter_id,
+                    data.id,
                 ],
                 (err) => {
                     if (err) {

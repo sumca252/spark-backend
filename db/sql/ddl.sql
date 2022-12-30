@@ -148,7 +148,6 @@ CREATE TABLE IF NOT EXISTS `scooter` (
     `longitude` CHAR(255) NOT NULL,
     `latitude` CHAR(255) NOT NULL,
     `price_id` INT NOT NULL,
-    `running` BOOLEAN NOT NULL,
     `speed` INT NOT NULL,
     `station_id` INT NOT NULL,
     PRIMARY KEY (`id`),
