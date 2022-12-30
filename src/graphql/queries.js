@@ -177,7 +177,6 @@ const RootQueryType = new GraphQLObjectType({
                 return status;
             },
         },
-
         getAllPrices: {
             type: new GraphQLList(PriceType),
             description: "List of all Prices",
@@ -309,6 +308,22 @@ const RootQueryType = new GraphQLObjectType({
             resolve: async (parent, args) => {
                 const station = await Stations.getStationById(
                     parseInt(args.id)
+                );
+
+                return station;
+            },
+        },
+        getStationByCityIdAndZoneId: {
+            type: new GraphQLList(StationType),
+            description: "A single Station by city id and zone id",
+            args: {
+                cityId: { type: new GraphQLNonNull(GraphQLString) },
+                zoneId: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const station = await Stations.getStationByCityIdAndZoneId(
+                    parseInt(args.cityId),
+                    parseInt(args.zoneId)
                 );
 
                 return station;

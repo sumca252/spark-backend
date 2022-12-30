@@ -30,6 +30,23 @@ const Stations = {
 
         return result;
     },
+    getStationByCityIdAndZoneId: (cityId, zoneId) => {
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_station_by_city_id_and_zone_id(?, ?)",
+                [cityId, zoneId],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
     addStation: (station) => {
         new Promise((resolve, reject) => {
             db.query(
