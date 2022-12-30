@@ -139,5 +139,44 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should return city by scooter id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        {
+                            getCityByScooterId(id: "1") {
+                                id,
+                                longitude,
+                                latitude,
+                                area
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.getCityByScooterId.should.be.a("array");
+                    res.body.data.getCityByScooterId[0].should.be.a("object");
+                    res.body.data.getCityByScooterId[0].should.have.property(
+                        "id"
+                    );
+
+                    res.body.data.getCityByScooterId[0].should.have.property(
+                        "longitude"
+                    );
+
+                    res.body.data.getCityByScooterId[0].should.have.property(
+                        "latitude"
+                    );
+
+                    res.body.data.getCityByScooterId[0].should.have.property(
+                        "area"
+                    );
+
+                    done();
+                });
+        });
     });
 });
