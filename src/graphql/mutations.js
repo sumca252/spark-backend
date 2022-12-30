@@ -166,9 +166,6 @@ const RootMutationType = new GraphQLObjectType({
                 price_id: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
-                running: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
                 speed: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
@@ -200,9 +197,6 @@ const RootMutationType = new GraphQLObjectType({
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 price_id: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                running: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 speed: {
@@ -321,9 +315,9 @@ const RootMutationType = new GraphQLObjectType({
                 Logs.createLog(args);
             },
         },
-        updateLogByScooterId: {
+        updateLogByLogId: {
             type: LogType,
-            description: "Update a log in the database by scooter id",
+            description: "Update a log in the database by log id",
             args: {
                 id: {
                     type: new GraphQLNonNull(GraphQLString),

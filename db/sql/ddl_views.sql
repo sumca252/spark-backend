@@ -18,7 +18,6 @@ SELECT
     p.start_cost,
     p.travel_cost,
     p.parking_cost,
-    sc.running,
     sc.speed,
     st.id AS station_id,
     st.name AS station_name,
