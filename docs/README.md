@@ -97,7 +97,7 @@ A single User by email
 <td></td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>getUserByUsername</strong></td>
+<td colspan="2" valign="top"><strong>getUserByUsernameOrEmail</strong></td>
 <td valign="top">[<a href="#user">User</a>]</td>
 <td>
 
@@ -319,6 +319,25 @@ A single Station by id
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getStationByCityIdAndZoneId</strong></td>
+<td valign="top">[<a href="#station">Station</a>]</td>
+<td>
+
+A single Station by city id and zone id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">cityId</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">zoneId</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -565,11 +584,6 @@ Add a scooter to the database
 <td></td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">running</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
 <td colspan="2" align="right" valign="top">speed</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
@@ -615,11 +629,6 @@ Update a scooter in the database by id
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">price_id</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">running</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -785,11 +794,11 @@ Add a new log to the database
 <td></td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>updateLogByScooterId</strong></td>
+<td colspan="2" valign="top"><strong>updateLogByLogId</strong></td>
 <td valign="top"><a href="#logs">Logs</a></td>
 <td>
 
-Update a log in the database by scooter id
+Update a log in the database by log id
 
 </td>
 </tr>
@@ -1022,6 +1031,15 @@ This represents a Log of a User
 </thead>
 <tbody>
 <tr>
+<td colspan="2" valign="top"><strong>id</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The id of the log
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>start_time</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
@@ -1222,15 +1240,6 @@ The latitude of the scooter
 <td>
 
 The price for renting the scooter
-
-</td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>running</strong></td>
-<td valign="top"><a href="#boolean">Boolean</a>!</td>
-<td>
-
-The running status of the scooter
 
 </td>
 </tr>
