@@ -30,7 +30,6 @@ CREATE PROCEDURE `add_scooter`(
     IN `a_longitude` DECIMAL(10, 8), 
     IN `a_latitude` DECIMAL(10, 8), 
     IN `a_price_id` INT,
-    IN `a_running` BOOLEAN,
     IN `a_speed` INT,
     IN `a_station_id` INT
 )
@@ -41,8 +40,7 @@ INSERT INTO
         `status_id`, 
         `longitude`,
         `latitude`, 
-        `price_id`, 
-        `running`, 
+        `price_id`,  
         `speed`, 
         `station_id`
     )
@@ -53,7 +51,6 @@ VALUES
         a_longitude, 
         a_latitude, 
         a_price_id, 
-        a_running, 
         a_speed, 
         a_station_id
     );
@@ -93,7 +90,6 @@ CREATE PROCEDURE `update_scooter_by_id`(
     IN `a_longitude` DECIMAL(10, 8), 
     IN `a_latitude` DECIMAL(10, 8), 
     IN `a_price_id` INT,
-    IN `a_running` BOOLEAN,
     IN `a_speed` INT,
     IN `a_station_id` INT
 )
@@ -106,7 +102,6 @@ SET
     `longitude` = a_longitude,
     `latitude` = a_latitude,
     `price_id` = a_price_id,
-    `running` = a_running,
     `speed` = a_speed
 WHERE 
     `id` = a_id;
@@ -922,14 +917,13 @@ END;;
 DELIMITER ;
 
 --
--- update log by scooter id
+-- update log by log id
 -- 
-DROP PROCEDURE IF EXISTS `update_log_by_scooter_id`;
+DROP PROCEDURE IF EXISTS `update_log_by_log_id`;
 
 DELIMITER ;;
 
-CREATE PROCEDURE `update_log_by_scooter_id`(
-    IN `a_scooter_id` INT,
+CREATE PROCEDURE `update_log_by_log_id`(
     IN `a_start_time` DATETIME,
     IN `a_end_time` DATETIME,
     IN `a_start_longitude` DECIMAL(10,8),
@@ -937,7 +931,8 @@ CREATE PROCEDURE `update_log_by_scooter_id`(
     IN `a_start_latitude` DECIMAL(10,8),
     IN `a_end_latitude` DECIMAL(10,8),
     IN `a_customer_id` INT,
-    IN `a_price_id` INT
+    IN `a_price_id` INT,
+    IN `a_log_id` INT
 )
 BEGIN
 UPDATE `logs`
@@ -951,7 +946,7 @@ SET
     `customer_id` = a_customer_id,
     `price_id` = a_price_id
 WHERE
-    `scooter_id` = a_scooter_id;
+    `id` = a_log_id;
 END;;
 
 DELIMITER ;

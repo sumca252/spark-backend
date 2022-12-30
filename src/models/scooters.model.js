@@ -52,14 +52,13 @@ const Scooters = {
     addScooter: (scooter) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL add_scooter(?, ?, ?, ?, ?, ?, ?, ?)",
+                "CALL add_scooter(?, ?, ?, ?, ?, ?, ?)",
                 [
                     scooter.battery,
                     scooter.status_id,
                     scooter.longitude,
                     scooter.latitude,
                     scooter.price_id,
-                    scooter.running,
                     scooter.speed,
                     scooter.station_id,
                 ],
@@ -87,7 +86,7 @@ const Scooters = {
     updateScooterById: (scooter) => {
         new Promise((resolve, reject) => {
             db.query(
-                "CALL update_scooter_by_id(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "CALL update_scooter_by_id(?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                     scooter.id,
                     scooter.battery,
@@ -95,7 +94,6 @@ const Scooters = {
                     scooter.longitude,
                     scooter.latitude,
                     scooter.price_id,
-                    scooter.running,
                     scooter.speed,
                     scooter.station_id,
                 ],

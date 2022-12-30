@@ -6,34 +6,44 @@ on:
     pull_request:
         branches: ["main"]
 
+env:
+    GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+    GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+    GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
+    GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
+    SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+    MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+    MYSQL_USER: ${{ secrets.MYSQL_USER }}
+    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }} 
+    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+    
 jobs:
     test:
         runs-on: ubuntu-22.04
         strategy:
             matrix:
                 node-version: [16.x]	
-
-        env:
-            MYSQL_HOST: "{{ secrets.MYSQL_HOST }}"        
-            MYSQL_ROOT_PASSWORD: "{{ secrets.MYSQL_ROOT_PASSWORD }}"
-            MYSQL_USER: "{{ secrets.MYSQL_USER }}"
-            MYSQL_PASSWORD: "{{ secrets.MYSQL_PASSWORD }}"
-            MYSQL_DATABASE: "{{ secrets.MYSQL_DATABASE }}"
+        services:
+            mysql:
+                image: isal20/spark-backend:test
+                env:
+                    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+                    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+                    MYSQL_USER: ${{ secrets.MYSQL_USER }}
+                    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
         steps:
             - name: Checkout repository code  
-              uses: actions/checkout@v3 
-            - name: Setup MySQL
-              run: |
-                    sudo /etc/init.d/mysql start
-                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h 127.0.0.1 -e "CREATE DATABASE {{ secrets.MYSQL_DATABASE }};"
-                    mysql -uroot -p'{{ secrets.MYSQL_ROOT_PASSWORD }}' -h 127.0.0.1 sparkdb < ./spark-backend/db/backup.sql
-                    
+              uses: actions/checkout@v3         
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: "npm"
+                node-version: ${{ matrix.node-version }}
+                cache: "npm"
 
             - run: npm install
             - run: npm test

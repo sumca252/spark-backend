@@ -31,7 +31,6 @@ describe("/api/v1/graphql", () => {
                                   travel_cost,
                                   parking_cost,
                                 },
-                                running,
                                 speed
                             }
                         }
@@ -59,9 +58,6 @@ describe("/api/v1/graphql", () => {
                     );
 
                     res.body.data.getAllScooters[0].should.have.property(
-                        "running"
-                    );
-                    res.body.data.getAllScooters[0].should.have.property(
                         "speed"
                     );
 
@@ -88,7 +84,6 @@ describe("/api/v1/graphql", () => {
                                   travel_cost,
                                   parking_cost,
                                 },
-                                running,
                                 speed
                             }
                         }
@@ -115,9 +110,6 @@ describe("/api/v1/graphql", () => {
                     );
 
                     res.body.data.getScooterById[0].should.have.property(
-                        "running"
-                    );
-                    res.body.data.getScooterById[0].should.have.property(
                         "speed"
                     );
                     done();
@@ -136,7 +128,6 @@ describe("/api/v1/graphql", () => {
                                 longitude: "1.0",
                                 latitude: "1.0",
                                 price_id: "1",
-                                running: "0",
                                 speed: "0",
                                 station_id: "1"
                             ) {
@@ -164,7 +155,6 @@ describe("/api/v1/graphql", () => {
                                 longitude: "1.0",
                                 latitude: "1.0",
                                 price_id: "1",
-                                running: "0",
                                 speed: "0",
                                 station_id: "1"
                             ) {
@@ -218,7 +208,6 @@ describe("/api/v1/graphql", () => {
                                     travel_cost,
                                     parking_cost
                                 },
-                                running,
                                 speed,
                                 station {
                                     id,
@@ -255,9 +244,6 @@ describe("/api/v1/graphql", () => {
                     );
 
                     res.body.data.getAllScooterInCityByCityId[0].should.have.property(
-                        "running"
-                    );
-                    res.body.data.getAllScooterInCityByCityId[0].should.have.property(
                         "speed"
                     );
 
@@ -290,7 +276,6 @@ describe("/api/v1/graphql", () => {
                                 travel_cost,
                                 parking_cost
                             },
-                            running,
                             speed,
                             station {
                                 id,
@@ -327,9 +312,6 @@ describe("/api/v1/graphql", () => {
                         "price"
                     );
 
-                    res.body.data.getAllScooterInStationByStationId[0].should.have.property(
-                        "running"
-                    );
                     res.body.data.getAllScooterInStationByStationId[0].should.have.property(
                         "speed"
                     );

@@ -1,12 +1,7 @@
 /**
  * Type definitions for GraphQL schema
  */
-const {
-    GraphQLObjectType,
-    GraphQLNonNull,
-    GraphQLString,
-    GraphQLBoolean,
-} = require("graphql");
+const { GraphQLObjectType, GraphQLNonNull, GraphQLString } = require("graphql");
 
 const RoleType = new GraphQLObjectType({
     name: "Role",
@@ -194,10 +189,6 @@ const ScooterType = new GraphQLObjectType({
                     parking_cost: price.parking_cost,
                 };
             },
-        },
-        running: {
-            description: "The running status of the scooter",
-            type: new GraphQLNonNull(GraphQLBoolean),
         },
         speed: {
             description: "The speed of the scooter",
