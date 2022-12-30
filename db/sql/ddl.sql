@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `scooter` (
     `latitude` CHAR(255) NOT NULL,
     `price_id` INT NOT NULL,
     `speed` INT NOT NULL,
-    `station_id` INT NOT NULL,
+    `station_id` INT NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
     FOREIGN KEY (`price_id`) REFERENCES `price` (`id`),
