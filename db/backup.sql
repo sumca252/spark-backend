@@ -281,12 +281,12 @@ DROP TABLE IF EXISTS `logs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `logs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `start_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `end_time` datetime DEFAULT NULL,
   `start_longitude` decimal(10,8) NOT NULL,
-  `end_longitude` decimal(10,8) NOT NULL,
+  `end_longitude` decimal(10,8) DEFAULT NULL,
   `start_latitude` decimal(10,8) NOT NULL,
-  `end_latitude` decimal(10,8) NOT NULL,
+  `end_latitude` decimal(10,8) DEFAULT NULL,
   `customer_id` int NOT NULL,
   `price_id` int NOT NULL,
   `scooter_id` int NOT NULL,
@@ -774,21 +774,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`spark`@`%` PROCEDURE `create_log`(
-    IN `a_start_time` DATETIME,
-    IN `a_end_time` DATETIME,
     IN `a_start_longitude` DECIMAL(10,8),
-    IN `a_end_longitude` DECIMAL(10,8),
     IN `a_start_latitude` DECIMAL(10,8),
-    IN `a_end_latitude` DECIMAL(10,8),
     IN `a_customer_id` INT,
     IN `a_price_id` INT,
     IN `a_scooter_id` INT
 )
 BEGIN
 INSERT INTO `logs` 
-    (`start_time`, `end_time`, `start_longitude`, `end_longitude`, `start_latitude`, `end_latitude`, `customer_id`, `price_id`, `scooter_id`)
+    (`start_longitude`, `start_latitude`, `customer_id`, `price_id`, `scooter_id`)
 VALUES
-    (a_start_time, a_end_time, a_start_longitude, a_end_longitude, a_start_latitude, a_end_latitude, a_customer_id, a_price_id, a_scooter_id);
+    (a_start_longitude, a_start_latitude, a_customer_id, a_price_id, a_scooter_id);
+
+
+
+
+SELECT LAST_INSERT_ID() INTO @log_id;
+
+
+SELECT @log_id AS id;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1903,4 +1908,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-30 20:09:31
+-- Dump completed on 2022-12-31  9:42:35
