@@ -193,53 +193,30 @@ DROP VIEW IF EXISTS `all_logs`;
 CREATE VIEW `all_logs` AS
 SELECT
     l.id,
-    l.start_time,
-    l.end_time,
+    DATE_FORMAT(l.start_time, "%Y-%m-%d %H:%i") AS start_time,
+    DATE_FORMAT(l.end_time, "%Y-%m-%d %H:%i") AS end_time,
     l.start_longitude,
     l.end_longitude,
     l.start_latitude,
     l.end_latitude,
     l.customer_id,
-    GROUP_CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    GROUP_CONCAT(u.first_name, ' ', u.last_name) AS customer_name,
     p.start_cost,
     p.travel_cost,
     p.parking_cost,
     l.scooter_id
-FROM
-    logs AS l 
-    JOIN all_customers AS c ON c.id = l.customer_id
-    JOIN price AS p ON p.id = l.price_id
+FROM logs AS l 
+    JOIN customer AS c 
+        ON c.id = l.customer_id
+    JOIN user AS u 
+        ON u.id = c.user_id
+    JOIN price AS p 
+        ON p.id = l.price_id
 GROUP BY
     l.id
 ORDER BY
     l.id ASC;
 
---
--- view all logs
---
-DROP VIEW IF EXISTS `all_logs`;
-
-CREATE VIEW `all_logs` AS
-SELECT
-    l.id,
-    l.start_time,
-    l.end_time,
-    l.start_longitude,
-    l.end_longitude,
-    l.start_latitude,
-    l.end_latitude,
-    l.customer_id,
-    GROUP_CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
-    l.price_id,
-    l.scooter_id
-FROM
-    logs AS l 
-    JOIN all_customers AS c ON c.id = l.customer_id
-    JOIN price AS p ON p.id = l.price_id
-GROUP BY
-    l.id
-ORDER BY
-    l.id ASC;
 
 
 
