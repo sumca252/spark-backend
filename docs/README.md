@@ -763,32 +763,12 @@ Add a new log to the database
 </td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">start_time</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">end_time</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
 <td colspan="2" align="right" valign="top">start_longitude</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">end_longitude</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
 <td colspan="2" align="right" valign="top">start_latitude</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">end_latitude</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>

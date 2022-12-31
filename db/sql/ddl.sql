@@ -175,12 +175,12 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 CREATE TABLE IF NOT EXISTS `logs` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `start_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `end_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `start_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `end_time` DATETIME DEFAULT NULL,
     `start_longitude` DECIMAL(10, 8) NOT NULL,
-    `end_longitude` DECIMAL(10, 8) NOT NULL,
+    `end_longitude` DECIMAL(10, 8) DEFAULT NULL,
     `start_latitude` DECIMAL(10, 8) NOT NULL,
-    `end_latitude` DECIMAL(10, 8) NOT NULL,
+    `end_latitude` DECIMAL(10, 8) DEFAULT NULL,
     `customer_id` INT NOT NULL,
     `price_id` INT NOT NULL,
     `scooter_id` INT NOT NULL,

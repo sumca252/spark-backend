@@ -912,23 +912,27 @@ DROP PROCEDURE IF EXISTS `create_log`;
 DELIMITER ;;
 
 CREATE PROCEDURE `create_log`(
-    IN `a_start_time` DATETIME,
-    IN `a_end_time` DATETIME,
     IN `a_start_longitude` DECIMAL(10,8),
-    IN `a_end_longitude` DECIMAL(10,8),
     IN `a_start_latitude` DECIMAL(10,8),
-    IN `a_end_latitude` DECIMAL(10,8),
     IN `a_customer_id` INT,
     IN `a_price_id` INT,
     IN `a_scooter_id` INT
 )
 BEGIN
 INSERT INTO `logs` 
-    (`start_time`, `end_time`, `start_longitude`, `end_longitude`, `start_latitude`, `end_latitude`, `customer_id`, `price_id`, `scooter_id`)
+    (`start_longitude`, `start_latitude`, `customer_id`, `price_id`, `scooter_id`)
 VALUES
-    (a_start_time, a_end_time, a_start_longitude, a_end_longitude, a_start_latitude, a_end_latitude, a_customer_id, a_price_id, a_scooter_id);
-END;;
+    (a_start_longitude, a_start_latitude, a_customer_id, a_price_id, a_scooter_id);
 
+--
+-- return the last inserted id by getting the last inserted id
+--
+SELECT LAST_INSERT_ID() INTO @log_id;
+--
+--
+SELECT @log_id AS id;
+--
+END;;
 DELIMITER ;
 
 --

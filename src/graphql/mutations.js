@@ -283,22 +283,10 @@ const RootMutationType = new GraphQLObjectType({
             type: LogType,
             description: "Add a new log to the database",
             args: {
-                start_time: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                end_time: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
                 start_longitude: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
-                end_longitude: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
                 start_latitude: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                end_latitude: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 customer_id: {
@@ -311,8 +299,10 @@ const RootMutationType = new GraphQLObjectType({
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
-            resolve: (parent, args) => {
-                Logs.createLog(args);
+            resolve: async (parent, args) => {
+                const log = await Logs.createLog(args);
+
+                return log;
             },
         },
         updateLogByLogId: {
