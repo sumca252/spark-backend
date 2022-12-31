@@ -189,6 +189,8 @@ describe("/api/v1/graphql", () => {
         });
 
         it("Should add a new user with unique username and email", (done) => {
+            const randomInt = Math.floor(Math.random() * 1000);
+
             chai.request(server)
                 .post("/api/v1/graphql")
                 .send({
@@ -197,9 +199,9 @@ describe("/api/v1/graphql", () => {
                             createUser(
                                 first_name: "John",
                                 last_name: "Doe",
-                                username: "johndoe1234",
+                                username: "johndoe${randomInt}",
                                 password: "password",
-                                email: "john.doe@example.com"
+                                email: "john.doe${randomInt}@example.com"
                                 phone: "1234567890",
                                 role_id: "2"
                             ) {
