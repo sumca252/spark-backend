@@ -816,6 +816,60 @@ Update a log in the database by log id
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>updatePaymentMethodByCustomerId</strong></td>
+<td valign="top"><a href="#account">Account</a></td>
+<td>
+
+Change the payment method of an account by customer id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customer_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The id of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">payment_method</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The type of payment method to change to
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>AddMoneyToAccountByCustomerId</strong></td>
+<td valign="top"><a href="#account">Account</a></td>
+<td>
+
+Add money to an account by customer id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customer_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The id of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">balance</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The amount of money to add to the account
+
+</td>
+</tr>
 </tbody>
 </table>
 
