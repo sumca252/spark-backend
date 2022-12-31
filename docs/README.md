@@ -802,17 +802,7 @@ Update a log in the database by log id
 <td></td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">start_time</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
 <td colspan="2" align="right" valign="top">end_time</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">start_longitude</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
@@ -822,27 +812,7 @@ Update a log in the database by log id
 <td></td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">start_latitude</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
 <td colspan="2" align="right" valign="top">end_latitude</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">customer_id</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">price_id</td>
-<td valign="top"><a href="#string">String</a>!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">scooter_id</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
