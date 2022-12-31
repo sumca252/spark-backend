@@ -136,7 +136,9 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `end_latitude`,
  1 AS `customer_id`,
  1 AS `customer_name`,
- 1 AS `price_id`,
+ 1 AS `start_cost`,
+ 1 AS `travel_cost`,
+ 1 AS `parking_cost`,
  1 AS `scooter_id`*/;
 SET character_set_client = @saved_cs_client;
 
@@ -1571,27 +1573,18 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`spark`@`%` PROCEDURE `update_log_by_log_id`(
-    IN `a_start_time` DATETIME,
+
+    IN `a_log_id` INT,
     IN `a_end_time` DATETIME,
-    IN `a_start_longitude` DECIMAL(10,8),
     IN `a_end_longitude` DECIMAL(10,8),
-    IN `a_start_latitude` DECIMAL(10,8),
-    IN `a_end_latitude` DECIMAL(10,8),
-    IN `a_customer_id` INT,
-    IN `a_price_id` INT,
-    IN `a_log_id` INT
+    IN `a_end_latitude` DECIMAL(10,8)
 )
 BEGIN
 UPDATE `logs`
 SET 
-    `start_time` = a_start_time,
     `end_time` = a_end_time,
-    `start_longitude` = a_start_longitude,
     `end_longitude` = a_end_longitude,
-    `start_latitude` = a_start_latitude,
-    `end_latitude` = a_end_latitude,
-    `customer_id` = a_customer_id,
-    `price_id` = a_price_id
+    `end_latitude` = a_end_latitude
 WHERE
     `id` = a_log_id;
 END ;;
@@ -1822,7 +1815,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`spark`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `all_logs` AS select `l`.`id` AS `id`,`l`.`start_time` AS `start_time`,`l`.`end_time` AS `end_time`,`l`.`start_longitude` AS `start_longitude`,`l`.`end_longitude` AS `end_longitude`,`l`.`start_latitude` AS `start_latitude`,`l`.`end_latitude` AS `end_latitude`,`l`.`customer_id` AS `customer_id`,group_concat(`c`.`first_name`,' ',`c`.`last_name` separator ',') AS `customer_name`,`l`.`price_id` AS `price_id`,`l`.`scooter_id` AS `scooter_id` from ((`logs` `l` join `all_customers` `c` on((`c`.`id` = `l`.`customer_id`))) join `price` `p` on((`p`.`id` = `l`.`price_id`))) group by `l`.`id` order by `l`.`id` */;
+/*!50001 VIEW `all_logs` AS select `l`.`id` AS `id`,date_format(`l`.`start_time`,'%Y-%m-%d %H:%i') AS `start_time`,date_format(`l`.`end_time`,'%Y-%m-%d %H:%i') AS `end_time`,`l`.`start_longitude` AS `start_longitude`,`l`.`end_longitude` AS `end_longitude`,`l`.`start_latitude` AS `start_latitude`,`l`.`end_latitude` AS `end_latitude`,`l`.`customer_id` AS `customer_id`,group_concat(`u`.`first_name`,' ',`u`.`last_name` separator ',') AS `customer_name`,`p`.`start_cost` AS `start_cost`,`p`.`travel_cost` AS `travel_cost`,`p`.`parking_cost` AS `parking_cost`,`l`.`scooter_id` AS `scooter_id` from (((`logs` `l` join `customer` `c` on((`c`.`id` = `l`.`customer_id`))) join `user` `u` on((`u`.`id` = `c`.`user_id`))) join `price` `p` on((`p`.`id` = `l`.`price_id`))) group by `l`.`id` order by `l`.`id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1908,4 +1901,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-31  9:42:35
+-- Dump completed on 2022-12-31 10:30:21
