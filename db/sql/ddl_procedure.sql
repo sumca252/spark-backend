@@ -326,6 +326,7 @@ DELIMITER ;;
 CREATE PROCEDURE `add_user`(
     IN `a_first_name` VARCHAR(255), 
     IN `a_last_name` VARCHAR(255), 
+    IN `a_username` VARCHAR(255),
     IN `a_password` VARCHAR(255), 
     IN `a_email` VARCHAR(255), 
     IN `a_phone` VARCHAR(255), 
@@ -335,7 +336,8 @@ BEGIN
 INSERT INTO 
     `user` (
         `first_name`, 
-        `last_name`, 
+        `last_name`,
+        `username`,
         `password`, 
         `email`, 
         `phone`, 
@@ -345,11 +347,18 @@ VALUES
     (
         a_first_name, 
         a_last_name,
+        a_username,
         a_password,
         a_email,
         a_phone,
         a_role_id
     );
+
+SELECT LAST_INSERT_ID() INTO @user_id;
+-- 
+INSERT INTO `customer` (`user_id`) VALUES (@user_id);
+-- 
+SELECT * FROM `all_users` WHERE `id` = @user_id;
 END;;
 
 DELIMITER ;
