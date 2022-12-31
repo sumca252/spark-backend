@@ -197,7 +197,7 @@ describe("/api/v1/graphql", () => {
                             createUser(
                                 first_name: "John",
                                 last_name: "Doe",
-                                username: "johndoe123",
+                                username: "johndoe1234",
                                 password: "password",
                                 email: "john.doe@example.com"
                                 phone: "1234567890",
