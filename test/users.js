@@ -187,5 +187,48 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should add a new user with unique username and email", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            createUser(
+                                first_name: "John",
+                                last_name: "Doe",
+                                username: "johndoe123",
+                                password: "password",
+                                email: "john.doe@example.com"
+                                phone: "1234567890",
+                                role_id: "2"
+                            ) {
+                                id,
+                                first_name,
+                                last_name,
+                                username,
+                                password,
+                                email,
+                                phone,
+                                role
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.createUser.should.be.a("object");
+                    res.body.data.createUser.should.have.property("id");
+                    res.body.data.createUser.should.have.property("first_name");
+                    res.body.data.createUser.should.have.property("last_name");
+                    res.body.data.createUser.should.have.property("username");
+                    res.body.data.createUser.should.have.property("password");
+                    res.body.data.createUser.should.have.property("email");
+                    res.body.data.createUser.should.have.property("phone");
+                    res.body.data.createUser.should.have.property("role");
+
+                    done();
+                });
+        });
     });
 });
