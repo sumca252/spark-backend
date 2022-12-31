@@ -312,36 +312,18 @@ const RootMutationType = new GraphQLObjectType({
                 id: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
-                start_time: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
                 end_time: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                start_longitude: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 end_longitude: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
-                start_latitude: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
                 end_latitude: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                customer_id: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                price_id: {
-                    type: new GraphQLNonNull(GraphQLString),
-                },
-                scooter_id: {
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
             resolve: (parent, args) => {
-                Logs.updateLogByScooterId(args);
+                Logs.updateLogByLogId(args);
             },
         },
     }),

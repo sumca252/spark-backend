@@ -46,21 +46,11 @@ const logs = {
         });
     },
     updateLogByLogId: (data) => {
+        console.log(data);
         return new Promise((reject) => {
             db.query(
-                "CALL update_log_by_log_id(?, ?, ?, ?, ?, ?, ?, ?, ? , ?)",
-                [
-                    data.start_time,
-                    data.end_time,
-                    data.start_longitude,
-                    data.end_longitude,
-                    data.start_latitude,
-                    data.end_latitude,
-                    data.customer_id,
-                    data.price_id,
-                    data.scooter_id,
-                    data.id,
-                ],
+                "CALL update_log_by_log_id(?, ?, ?, ?)",
+                [data.id, data.end_time, data.end_longitude, data.end_latitude],
                 (err) => {
                     if (err) {
                         reject(err);

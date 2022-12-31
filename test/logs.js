@@ -86,5 +86,28 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should update log by log id", (done) => {
+            const query = `
+                mutation {
+                    updateLogByLogId(
+                        id: "1",
+                        end_time: "2022-12-31 10:10:00",
+                        end_longitude: "0.0",
+                        end_latitude: "0.0"
+                    ) {
+                        id
+                    }
+                }`;
+
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({ query })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a("object");
+                    done();
+                });
+        });
     });
 });

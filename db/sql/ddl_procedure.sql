@@ -982,37 +982,23 @@ DROP PROCEDURE IF EXISTS `update_log_by_log_id`;
 DELIMITER ;;
 
 CREATE PROCEDURE `update_log_by_log_id`(
-    IN `a_start_time` DATETIME,
+
+    IN `a_log_id` INT,
     IN `a_end_time` DATETIME,
-    IN `a_start_longitude` DECIMAL(10,8),
     IN `a_end_longitude` DECIMAL(10,8),
-    IN `a_start_latitude` DECIMAL(10,8),
-    IN `a_end_latitude` DECIMAL(10,8),
-    IN `a_customer_id` INT,
-    IN `a_price_id` INT,
-    IN `a_log_id` INT
+    IN `a_end_latitude` DECIMAL(10,8)
 )
 BEGIN
 UPDATE `logs`
 SET 
-    `start_time` = a_start_time,
     `end_time` = a_end_time,
-    `start_longitude` = a_start_longitude,
     `end_longitude` = a_end_longitude,
-    `start_latitude` = a_start_latitude,
-    `end_latitude` = a_end_latitude,
-    `customer_id` = a_customer_id,
-    `price_id` = a_price_id
+    `end_latitude` = a_end_latitude
 WHERE
     `id` = a_log_id;
 END;;
 
 DELIMITER ;
-
-
-
-
-
 
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
