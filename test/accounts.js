@@ -111,5 +111,48 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should update payment method for an account by customer id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            updatePaymentMethodByCustomerId(
+                                customer_id: "7", 
+                                payment_method: "Paypal"
+                            ) {
+                                id,
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+        it("Should add money to an account by customer id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            AddMoneyToAccountByCustomerId(
+                                customer_id: "7"
+                                balance:"10000"
+                            ) {
+                                id
+                            }
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a("object");
+                    done();
+                });
+        });
     });
 });

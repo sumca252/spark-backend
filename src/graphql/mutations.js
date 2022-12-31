@@ -10,6 +10,7 @@ const Station = require("../models/stations.model");
 const Zone = require("../models/zones.model");
 const Scooter = require("../models/scooters.model");
 const Logs = require("../models/logs.model");
+const Accounts = require("../models/accounts.model");
 
 const {
     UserType,
@@ -18,6 +19,7 @@ const {
     ZoneType,
     ScooterType,
     LogType,
+    AccountType,
 } = require("./types");
 
 const RootMutationType = new GraphQLObjectType({
@@ -324,6 +326,41 @@ const RootMutationType = new GraphQLObjectType({
             },
             resolve: (parent, args) => {
                 Logs.updateLogByLogId(args);
+            },
+        },
+        updatePaymentMethodByCustomerId: {
+            type: AccountType,
+            description:
+                "Change the payment method of an account by customer id",
+            args: {
+                customer_id: {
+                    description: "The id of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                payment_method: {
+                    description: "The type of payment method to change to",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+            },
+            resolve: (parent, args) => {
+                Accounts.changePaymentMethod(args);
+            },
+        },
+        AddMoneyToAccountByCustomerId: {
+            type: AccountType,
+            description: "Add money to an account by customer id",
+            args: {
+                customer_id: {
+                    description: "The id of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                balance: {
+                    description: "The amount of money to add to the account",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+            },
+            resolve: (parent, args) => {
+                Accounts.AddMoneyToAccount(args);
             },
         },
     }),

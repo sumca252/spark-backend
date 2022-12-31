@@ -1000,6 +1000,47 @@ END;;
 
 DELIMITER ;
 
+--
+-- change payment method
+--
+DROP PROCEDURE IF EXISTS `change_payment_method`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `change_payment_method`(
+    IN `a_customer_id` INT,
+    IN `a_payment_method` VARCHAR(255)
+)
+BEGIN
+UPDATE `account`
+SET 
+    `payment_method` = a_payment_method
+WHERE
+    `customer_id` = a_customer_id;
+
+END;;
+DELIMITER ;
+
+--
+-- add money to account
+--
+DROP PROCEDURE IF EXISTS `add_money_to_account`;
+
+DELIMITER ;;
+CREATE PROCEDURE `add_money_to_account`(
+    IN `a_customer_id` INT,
+    IN `a_balance` DECIMAL(10,2)
+)
+BEGIN
+UPDATE `account`
+SET 
+    `balance` = a_balance
+WHERE
+    `customer_id` = a_customer_id;
+END;;
+
+DELIMITER ;
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------

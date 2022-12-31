@@ -46,7 +46,6 @@ const logs = {
         });
     },
     updateLogByLogId: (data) => {
-        console.log(data);
         return new Promise((reject) => {
             db.query(
                 "CALL update_log_by_log_id(?, ?, ?, ?)",
