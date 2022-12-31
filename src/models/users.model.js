@@ -67,12 +67,13 @@ const Users = {
 
         user.password = hashedPassword;
 
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             db.query(
-                "CALL add_user(?, ?, ?, ?, ?, ?)",
+                "CALL add_user(?, ?, ?, ?, ?, ?, ?)",
                 [
                     user.first_name,
                     user.last_name,
+                    user.username,
                     user.password,
                     user.email,
                     user.phone,
@@ -83,7 +84,7 @@ const Users = {
                         reject(err);
                         console.log(err);
                     }
-                    resolve(rows[0]);
+                    resolve(rows[0][0]);
                 }
             );
         });
@@ -101,7 +102,6 @@ const Users = {
                 [firstName, lastName, username, email, roleId],
                 (err) => {
                     if (err) {
-                        console.log(err);
                         reject(err);
                     }
                 }

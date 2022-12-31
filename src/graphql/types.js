@@ -34,6 +34,10 @@ const UserType = new GraphQLObjectType({
             description: "The last name of the user",
             type: new GraphQLNonNull(GraphQLString),
         },
+        username: {
+            description: "The username of the user",
+            type: new GraphQLNonNull(GraphQLString),
+        },
         password: {
             description: "The hashed password of the user",
             type: new GraphQLNonNull(GraphQLString),

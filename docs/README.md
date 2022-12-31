@@ -682,32 +682,65 @@ Add a new user to the database
 <tr>
 <td colspan="2" align="right" valign="top">first_name</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+First name of the user
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">last_name</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Last name of the user
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">username</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Username of the user
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">password</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Password of the user
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">email</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Email of the user
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">phone</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Phone number of the user
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">role_id</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Role of the user (1 = admin, 2 = customer)
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>updateUserById</strong></td>
@@ -1426,6 +1459,15 @@ The first name of the user
 <td>
 
 The last name of the user
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>username</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The username of the user
 
 </td>
 </tr>
