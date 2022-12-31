@@ -26,24 +26,21 @@ const logs = {
         });
     },
     createLog: (data) => {
-        return new Promise((reject) => {
+        return new Promise((resolve, reject) => {
             db.query(
-                "CALL create_log(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "CALL create_log(?, ?, ?, ?, ?)",
                 [
-                    data.start_time,
-                    data.end_time,
                     data.start_longitude,
-                    data.end_longitude,
                     data.start_latitude,
-                    data.end_latitude,
                     data.customer_id,
                     data.price_id,
-                    data.id,
+                    data.scooter_id,
                 ],
-                (err) => {
+                (err, rows) => {
                     if (err) {
                         reject(err);
                     }
+                    resolve(rows[0][0]);
                 }
             );
         });
