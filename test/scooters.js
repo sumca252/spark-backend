@@ -156,7 +156,7 @@ describe("/api/v1/graphql", () => {
                                 latitude: "1.0",
                                 price_id: "1",
                                 speed: "0",
-                                station_id: "1"
+                                station_id: "3"
                             ) {
                                 id
                             } 
