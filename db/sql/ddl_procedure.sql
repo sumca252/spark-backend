@@ -130,7 +130,8 @@ SET
     `longitude` = a_longitude,
     `latitude` = a_latitude,
     `price_id` = a_price_id,
-    `speed` = a_speed
+    `speed` = a_speed,
+    `station_id` = a_station_id
 WHERE 
     `id` = a_id;
 END;;
