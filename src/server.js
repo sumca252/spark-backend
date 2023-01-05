@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-        origin: "*",
+        origin: "*", //
         credentials: true,
     })
 );
