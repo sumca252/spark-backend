@@ -30,6 +30,23 @@ const Stations = {
 
         return result;
     },
+    getStationByZoneType: (zoneType) => {
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_station_by_zone_type(?)",
+                [zoneType],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
     getStationByCityIdAndZoneId: (cityId, zoneId) => {
         const result = new Promise((resolve, reject) => {
             db.query(

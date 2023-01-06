@@ -325,6 +325,21 @@ const RootQueryType = new GraphQLObjectType({
                 return station;
             },
         },
+        getStationByZoneType: {
+            type: new GraphQLList(StationType),
+            description: "Stations by zone type",
+            args: {
+                description: "Stations by zone type",
+                zone_type: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const station = await Stations.getStationByZoneType(
+                    args.zone_type
+                );
+
+                return station;
+            },
+        },
         getStationByCityIdAndZoneId: {
             type: new GraphQLList(StationType),
             description: "A single Station by city id and zone id",
