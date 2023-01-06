@@ -17,6 +17,7 @@ env:
     MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }} 
     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
     MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+    JWT_SECRET: ${{ secrets.JWT_SECRET }}
     
 jobs:
     test:
