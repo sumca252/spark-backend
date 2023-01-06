@@ -329,7 +329,6 @@ const RootQueryType = new GraphQLObjectType({
             type: new GraphQLList(StationType),
             description: "Stations by zone type",
             args: {
-                description: "Stations by zone type",
                 zone_type: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: async (parent, args) => {

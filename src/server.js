@@ -61,7 +61,7 @@ app.disable("x-powered-by");
 
 // log requests to the console in dev mode
 if (process.env.NODE_ENV !== "test") {
-    app.use(morgan("combined")); // 'combined' outputs the Apache style LOGs
+    app.use(morgan("dev")); // 'combined' outputs the Apache style LOGs
 }
 
 // GraphQL endpoint /api/v1/graphql
