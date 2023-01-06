@@ -82,7 +82,7 @@ DROP VIEW IF EXISTS `all_customers`;
 
 CREATE VIEW `all_customers` AS
 SELECT
-    u.id,
+    c.id,
     u.first_name,
     u.last_name,
     u.email,
@@ -92,10 +92,11 @@ SELECT
 FROM
     user AS u
     JOIN role AS r ON r.id = u.role_id
+    JOIN customer AS c ON c.user_id = u.id
 WHERE
     r.role = 'customer'
 ORDER BY
-    u.id ASC;
+    c.id ASC;
 
 --
 -- view all_roles
