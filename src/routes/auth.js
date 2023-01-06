@@ -24,8 +24,6 @@ router.post("/login", async (req, res) => {
         });
     }
 
-    console.log({ login: req.body });
-
     const user = await User.getUserByEmail(email);
 
     if (user.length === 0) {
@@ -80,16 +78,6 @@ router.post("/register", (req, res) => {
             message: "Please fill in all fields to register a new user account",
         });
     }
-
-    console.log({
-        first_name: firstName,
-        last_name: lastName,
-        username: username,
-        email: email,
-        password: password,
-        phone: phone,
-        role_id: roleId,
-    });
 
     User.createUser({
         first_name: firstName,
