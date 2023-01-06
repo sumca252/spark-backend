@@ -1051,6 +1051,30 @@ END;;
 
 DELIMITER ;
 
+
+--
+-- get station by zone type
+--
+DROP PROCEDURE IF EXISTS `get_station_by_zone_type`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_station_by_zone_type`(
+    IN `a_zone_type` VARCHAR(255)
+)
+BEGIN
+DECLARE curr_search VARCHAR(50);
+SELECT CONCAT('%', a_zone_type, '%') INTO curr_search;
+
+SELECT 
+    *
+FROM
+    all_stations
+WHERE
+    zone_type LIKE curr_search;
+END;;
+
+DELIMITER ;
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------
