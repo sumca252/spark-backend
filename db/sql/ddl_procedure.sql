@@ -30,7 +30,7 @@ CREATE PROCEDURE `get_city_by_scooter_id`(
 
 BEGIN
 SELECT 
-    sc.id,
+    ac.id,
     ac.longitude,
     ac.latitude,
     ac.area
