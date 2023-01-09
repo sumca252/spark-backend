@@ -24,6 +24,7 @@ describe("/api/v1/graphql", () => {
                                     id,
                                     first_name,
                                     last_name,
+                                    username,
                                     email,
                                     phone,
                                     role
@@ -41,6 +42,10 @@ describe("/api/v1/graphql", () => {
                     );
                     res.body.data.getAllCustomers[0].user.should.have.property(
                         "last_name"
+                    );
+
+                    res.body.data.getAllCustomers[0].user.should.have.property(
+                        "username"
                     );
 
                     res.body.data.getAllCustomers[0].user.should.have.property(
@@ -69,6 +74,7 @@ describe("/api/v1/graphql", () => {
                                     id,
                                     first_name,
                                     last_name,
+                                    username,
                                     email,
                                     phone,
                                     role
@@ -87,6 +93,11 @@ describe("/api/v1/graphql", () => {
                     res.body.data.getCustomerById[0].user.should.have.property(
                         "last_name"
                     );
+
+                    res.body.data.getCustomerById[0].user.should.have.property(
+                        "username"
+                    );
+
                     res.body.data.getCustomerById[0].user.should.have.property(
                         "email"
                     );

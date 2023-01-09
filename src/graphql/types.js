@@ -73,6 +73,7 @@ const CustomerType = new GraphQLObjectType({
                     id: user.id,
                     first_name: user.first_name,
                     last_name: user.last_name,
+                    username: user.username,
                     email: user.email,
                     phone: user.phone,
                     role: user.role,
