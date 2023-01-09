@@ -999,3 +999,8 @@ id,first_name,last_name,username,password,email,phone,role_id,token
 998,Carla,Frederick,CarlaFrederick8839,$2b$10$ieAst92maDGWfGsHjLEsT.qmibhP7GgZ7rmlRFaDel0FPeqHERdeC,gene80@example.net,0701742880,2,
 999,Natalie,Rush,NatalieRush5016,$2b$10$vYfW4z46EYEKUQ1Suk1.5eD4qGRcqv.hbXskpTk2hcD5YBcMLeqzO,wjones@example.net,0701748992,2,
 1000,Karen,Donovan,KarenDonovan6622,$2b$10$TvbNs1nwRDrvEw6EJYWEOu/Npsyzp7oVpSHO/9vcDUepq3ksgLtx2,xdaugherty@example.org,0701746163,2,
+1001,Carolinainho,Vaktelsson,vaktelsson52,$2b$10$yx2bJeystBYa1dDp0/1oQe06yxrrO6sgnTLwBKOv0RVjezqDzYqRO,carolinainho.vaktelsson@example.com,0701740607,2,
+1002,Olleinho,Tulpansson,tulpansson68,$2b$10$22HR18T0I4oTQQS1DPAM9O8LlgaezOEngN1mrVjM7BJUZWOaaOxOW,olleinho.tulpansson@example.com,0701740612,2,
+1003,Verainho,Uttersson,uttersson79,$2b$10$nue9FjbKyttXFstAi7wpS.Bi5JiAARX0ZIRNXR7h0huHcWiktn5k.,verainho.uttersson@example.com,0701740607,2,
+1004,Andreainho,Andersson,andersson65,$2b$10$IW/rZvJpMsgExaoAhhx0L.9Au.DI4klHCCwRmiN5/1jPzZkZhtVp.,andreainho.tjadersson@example.com,0701740624,2,
+1005,Anders,Hermelinsson,hermelinsson66,$2b$10$poKPeNrw7kWdyLdXMqcTceY4wS9maocqam6miBo1yEimxBzs0d5PK,anders.hermelinsson@example.com,0701740629,2,
