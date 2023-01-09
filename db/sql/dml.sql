@@ -34,7 +34,7 @@ INTO TABLE `customer`
 CHARACTER SET utf8 
 FIELDS 
     TERMINATED BY ',' 
-    ENCLOSED BY '"' 
+    -- ENCLOSED BY '"' 
 LINES 
     TERMINATED BY '\n' 
 IGNORE 1 LINES
