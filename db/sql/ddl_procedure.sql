@@ -1075,6 +1075,52 @@ WHERE
 END;;
 
 DELIMITER ;
+
+
+--
+-- rent scooter
+--
+DROP PROCEDURE IF EXISTS `rent_scooter`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `rent_scooter`(
+    IN `a_scooter_id` INT,
+    IN `a_user_id` INT,
+    IN `a_start_longitude` DECIMAL(10,8),
+    IN `a_start_latitude` DECIMAL(10,8)
+)
+BEGIN
+    DECLARE c_id INT;
+    DECLARE ac_balance DECIMAL(10,2);
+    
+    SELECT id INTO c_id FROM customer WHERE user_id = a_user_id;
+    SELECT balance INTO ac_balance FROM account WHERE customer_id = c_id;
+
+    IF ac_balance < 0 THEN 
+        SELECT 'You do not have enough money to rent a scooter' AS 'error'; 
+    ELSE
+        -- update the scooter status to rented
+        UPDATE `scooter` SET `status_id` = '8' WHERE `id` = a_scooter_id;
+        
+        -- update the account balance
+        UPDATE `account` SET `balance` = ac_balance - 1 WHERE `customer_id` = c_id;
+        
+        -- create a log
+        CALL create_log(
+            a_start_longitude, 
+            a_start_latitude, 
+            c_id, 
+            1, 
+            a_scooter_id
+        );
+        
+        SELECT 'You have successfully rented a scooter' AS 'success';
+    END IF;
+END;;
+
+DELIMITER ;
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------
