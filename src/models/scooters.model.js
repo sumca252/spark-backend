@@ -116,23 +116,39 @@ const Scooters = {
             });
         });
     },
-    rentScooter: (id, userId, long, lat) => {
-        console.log("rent scooter", id, userId, long, lat);
+    rentScooter: (scooterId, userId, startLong, startLat) => {
         const result = new Promise((resolve, reject) => {
             db.query(
                 "CALL rent_scooter(?,?,?,?)",
-                [id, userId, long, lat],
+                [scooterId, userId, startLong, startLat],
                 (err, rows) => {
                     if (err) {
                         reject(err);
                     }
 
-                    resolve(rows[0]);
+                    resolve(rows[0][0]);
                 }
             );
         });
 
         return result;
+    },
+
+    returnScooter: (scooterId, userId, endLong, endLat, distance) => {
+        return new Promise((resolve, reject) => {
+            db.query(
+                "CALL return_scooter(?,?,?,?,?)",
+                [scooterId, userId, endLong, endLat, distance],
+                (err, rows) => {
+                    if (err) {
+                        console.log(err);
+                        reject(err);
+                    }
+                    console.log(rows[0][0]);
+                    resolve(rows[0][0]);
+                }
+            );
+        });
     },
 };
 

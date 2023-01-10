@@ -1129,8 +1129,8 @@ DROP PROCEDURE IF EXISTS `return_scooter`;
 DELIMITER ;;
 
 CREATE PROCEDURE `return_scooter`(
-    IN `a_user_id` INT,
     IN `a_scooter_id` INT,
+    IN `a_user_id` INT,
     IN `a_end_longitude` DECIMAL(10,8),
     IN `a_end_latitude` DECIMAL(10,8),
     IN `a_distance` DECIMAL(10,2)
@@ -1159,7 +1159,7 @@ BEGIN
     UPDATE 
         `scooter` 
     SET 
-        `status_id` = '1' 
+        `status_id` = 1
     WHERE `id` = a_scooter_id;
 
     -- update the account balance
@@ -1169,7 +1169,7 @@ BEGIN
         `balance` = ac_balance - total_price
     WHERE `customer_id` = c_id;
 
-    -- update the log
+    -- update_log_by_log_id(log_id end_time end_longitude end_latitude)
     CALL update_log_by_log_id(
         log_id, 
         NOW(), 
