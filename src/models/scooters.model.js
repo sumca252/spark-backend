@@ -116,6 +116,24 @@ const Scooters = {
             });
         });
     },
+    rentScooter: (id, userId, long, lat) => {
+        console.log("rent scooter", id, userId, long, lat);
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL rent_scooter(?,?,?,?)",
+                [id, userId, long, lat],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resolve(rows[0]);
+                }
+            );
+        });
+
+        return result;
+    },
 };
 
 module.exports = Scooters;
