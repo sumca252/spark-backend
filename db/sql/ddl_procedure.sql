@@ -1121,6 +1121,68 @@ END;;
 
 DELIMITER ;
 
+--
+-- return scooter
+--
+DROP PROCEDURE IF EXISTS `return_scooter`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `return_scooter`(
+    IN `a_user_id` INT,
+    IN `a_scooter_id` INT,
+    IN `a_end_longitude` DECIMAL(10,8),
+    IN `a_end_latitude` DECIMAL(10,8),
+    IN `a_distance` DECIMAL(10,2)
+)
+BEGIN
+    DECLARE c_id INT;
+    DECLARE ac_balance DECIMAL(10,2);
+    DECLARE log_id INT;
+    DECLARE total_price INT;
+    DECLARE tr_cost INT;
+    DECLARE p_cost INT; 
+
+
+    -- get the customer id and account balance
+    SELECT id INTO c_id FROM customer WHERE user_id = a_user_id;
+    SELECT balance INTO ac_balance FROM account WHERE customer_id = c_id;
+
+    -- get customers log id
+    SELECT id INTO log_id FROM logs WHERE customer_id = c_id AND scooter_id = a_scooter_id ORDER BY id DESC LIMIT 1;
+
+    -- calculate the total price for the traveled distance 
+    -- 3 = travel_cost  + parking_cost (1+2) 
+    SET total_price = a_distance * 3;
+
+    -- update the scooter status to available
+    UPDATE 
+        `scooter` 
+    SET 
+        `status_id` = '1' 
+    WHERE `id` = a_scooter_id;
+
+    -- update the account balance
+    UPDATE 
+        `account` 
+    SET 
+        `balance` = ac_balance - total_price
+    WHERE `customer_id` = c_id;
+
+    -- update the log
+    CALL update_log_by_log_id(
+        log_id, 
+        NOW(), 
+        a_end_longitude, 
+        a_end_latitude
+    );
+
+    SELECT 'You have successfully returned a scooter' AS 'success';
+
+END;;
+
+DELIMITER ;
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------
