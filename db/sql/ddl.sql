@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `account` (
     `customer_id` INT NOT NULL,
     `balance` DECIMAL(10, 2) NOT NULL,
     `payment_method` VARCHAR(255) NOT NULL,
-    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 );
@@ -164,7 +164,8 @@ CREATE TABLE IF NOT EXISTS `payment` (
     `payment_method` VARCHAR(255) NOT NULL,
     `account_id` INT NOT NULL,
     `price_id` INT NOT NULL,
-    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `total` DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
     FOREIGN KEY (`price_id`) REFERENCES `price` (`id`)
