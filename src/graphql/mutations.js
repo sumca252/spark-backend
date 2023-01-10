@@ -224,6 +224,36 @@ const RootMutationType = new GraphQLObjectType({
                 Scooter.deleteScooterById(args.id);
             },
         },
+        rentScooter: {
+            type: ScooterType,
+            description: "Rent a scooter in the database",
+            args: {
+                id: {
+                    description: "Id of the scooter",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                user_id: {
+                    description: "Id of the user",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                longitude: {
+                    description: "Longitude of the scooter",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                latitude: {
+                    description: "Latitude of the scooter",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+            },
+            resolve: (parent, args) => {
+                Scooter.rentScooter(
+                    args.id,
+                    args.user_id,
+                    args.longitude,
+                    args.latitude
+                );
+            },
+        },
         createUser: {
             type: UserType,
             description: "Add a new user to the database",
