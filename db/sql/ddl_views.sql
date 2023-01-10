@@ -225,29 +225,28 @@ ORDER BY
 --
 -- all payments
 --
--- DROP VIEW IF EXISTS `all_payments`;
--- 
--- CREATE VIEW `all_payments` AS
--- SELECT
---     py.id,
---     py.payment_method,
---     py.account_id,
---     GROUP_CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
---     c.email,
---     pr.start_cost,
---     pr.travel_cost,
---     pr.parking_cost,
---     DATE_FORMAT(py.date, '%d-%m-%Y') AS date 
--- FROM
---     payment AS py
---     JOIN account AS ac ON ac.id = py.account_id
---     JOIN price AS pr ON pr.id = py.price_id
---     JOIN all_customers AS c ON c.id = ac.customer_id
--- GROUP BY
---     py.id
--- ORDER BY
---     py.id ASC;
--- 
+ DROP VIEW IF EXISTS `all_payments`;
+ 
+ CREATE VIEW `all_payments` AS
+ SELECT
+    py.id,
+    py.payment_method,
+    py.account_id,
+    ac.customer_id,
+    GROUP_CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    c.email,
+    py.total,
+    DATE_FORMAT(py.date, '%d-%m-%Y') AS date 
+ FROM
+    payment AS py
+    JOIN account AS ac ON ac.id = py.account_id
+    JOIN price AS pr ON pr.id = py.price_id
+    JOIN all_customers AS c ON c.id = ac.customer_id
+ GROUP BY
+    py.id
+ ORDER BY
+    py.id ASC;
+ 
 
 -- 
 -- -------------------------------------------------------------------------
