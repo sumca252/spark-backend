@@ -10,6 +10,7 @@
     * [City](#city)
     * [Customer](#customer)
     * [Logs](#logs)
+    * [Payment](#payment)
     * [Price](#price)
     * [Role](#role)
     * [Scooter](#scooter)
@@ -398,6 +399,29 @@ A single Log by id
 <td>
 
 A single Log by customer id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customerId</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getAllPayments</strong></td>
+<td valign="top">[<a href="#payment">Payment</a>]</td>
+<td>
+
+List of all Payments
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>getPaymentByCustomerId</strong></td>
+<td valign="top">[<a href="#payment">Payment</a>]</td>
+<td>
+
+A List of Payments by customer id
 
 </td>
 </tr>
@@ -1276,6 +1300,95 @@ The id of the log
 <td colspan="2" valign="top"><strong>scooter_id</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+
+### Payment
+
+This represents a Payment of a User
+
+<table>
+<thead>
+<tr>
+<th align="left">Field</th>
+<th align="right">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" valign="top"><strong>id</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The id of the payment
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>payment_method</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The payment method used
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>account_id</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The account id of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>customer_id</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The customer id of the payment
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>customer_name</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The full name of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>email</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The email of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>total</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The total amount paid
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>date</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+The date of the payment
+
+</td>
 </tr>
 </tbody>
 </table>
