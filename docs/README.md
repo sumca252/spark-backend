@@ -337,6 +337,20 @@ A single Station by id
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>getStationByZoneType</strong></td>
+<td valign="top">[<a href="#station">Station</a>]</td>
+<td>
+
+Stations by zone type
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">zone_type</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getStationByCityIdAndZoneId</strong></td>
 <td valign="top">[<a href="#station">Station</a>]</td>
 <td>
@@ -669,6 +683,105 @@ Delete a scooter in the database by id
 <td colspan="2" align="right" valign="top">id</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>rentScooter</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Rent a scooter in the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Id of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">user_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Id of the user
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Longitude of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Latitude of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>returnScooter</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Return a scooter in the database
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Id of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">user_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Id of the user
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Longitude of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Latitude of the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">distance</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+travelled distance for calculating total price
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>createUser</strong></td>
