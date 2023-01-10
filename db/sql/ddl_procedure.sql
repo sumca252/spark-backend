@@ -985,6 +985,29 @@ END;;
 DELIMITER ;
 
 --
+-- get log by customer id
+--
+DROP PROCEDURE IF EXISTS `get_log_by_customer_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_log_by_customer_id`(
+    IN `a_customer_id` INT
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_logs
+WHERE
+    customer_id = a_customer_id;
+END;;
+
+DELIMITER ;
+
+
+
+--
 -- update log by log id
 -- 
 DROP PROCEDURE IF EXISTS `update_log_by_log_id`;
