@@ -340,6 +340,45 @@ const LogType = new GraphQLObjectType({
     }),
 });
 
+const PaymentType = new GraphQLObjectType({
+    name: "Payment",
+    description: "This represents a Payment of a User",
+    fields: () => ({
+        id: {
+            description: "The id of the payment",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        payment_method: {
+            description: "The payment method used",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        account_id: {
+            description: "The account id of the customer",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        customer_id: {
+            description: "The customer id of the payment",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        customer_name: {
+            description: "The full name of the customer",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        email: {
+            description: "The email of the customer",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        total: {
+            description: "The total amount paid",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+        date: {
+            description: "The date of the payment",
+            type: new GraphQLNonNull(GraphQLString),
+        },
+    }),
+});
+
 module.exports = {
     RoleType,
     UserType,
@@ -352,4 +391,5 @@ module.exports = {
     CityType,
     StationType,
     LogType,
+    PaymentType,
 };

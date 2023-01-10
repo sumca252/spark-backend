@@ -1206,6 +1206,44 @@ END;;
 
 DELIMITER ;
 
+--
+-- get all payments
+--
+DROP PROCEDURE IF EXISTS `get_all_payments`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_payments`()
+BEGIN
+SELECT
+    *
+FROM 
+    all_payments;
+END;;
+
+DELIMITER ;
+
+--
+-- get payments by customer id
+-- 
+DROP PROCEDURE IF EXISTS `get_payments_by_customer_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_payments_by_customer_id`(
+    IN `a_customer_id` INT
+)
+BEGIN
+SELECT
+    *
+FROM
+    all_payments
+WHERE
+    customer_id = a_customer_id;
+END;;
+
+DELIMITER ;
+
 -- ---------------------------------------------------------------------------
 -- PROCEDURES
 -- ---------------------------------------------------------------------------

@@ -23,6 +23,7 @@ const {
     CityType,
     StationType,
     LogType,
+    PaymentType,
 } = require("./types");
 
 // Models
@@ -37,6 +38,7 @@ const Zones = require("../models/zones.model");
 const Cities = require("../models/cities.model");
 const Stations = require("../models/stations.model");
 const Logs = require("../models/logs.model");
+const Payments = require("../models/payments.model");
 
 // Root Query
 const RootQueryType = new GraphQLObjectType({
@@ -387,6 +389,29 @@ const RootQueryType = new GraphQLObjectType({
                 const log = await Logs.getLogByCustomerId(args.customerId);
 
                 return log;
+            },
+        },
+        getAllPayments: {
+            type: new GraphQLList(PaymentType),
+            description: "List of all Payments",
+            resolve: async () => {
+                const payments = await Payments.getAllPayments();
+
+                return payments;
+            },
+        },
+        getPaymentByCustomerId: {
+            type: new GraphQLList(PaymentType),
+            description: "A List of Payments by customer id",
+            args: {
+                customerId: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const payments = await Payments.getPaymentsByCustomerId(
+                    args.customerId
+                );
+
+                return payments;
             },
         },
     }),
