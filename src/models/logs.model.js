@@ -58,6 +58,20 @@ const logs = {
             );
         });
     },
+    getLogByCustomerId: (customerId) => {
+        return new Promise((resolve, reject) => {
+            db.query(
+                "CALL get_log_by_customer_id(?)",
+                [customerId],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve(rows[0]);
+                }
+            );
+        });
+    },
 };
 
 module.exports = logs;

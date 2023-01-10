@@ -373,6 +373,19 @@ const RootQueryType = new GraphQLObjectType({
             resolve: async (parent, args) => {
                 const log = await Logs.getLogById(parseInt(args.id));
 
+                console.log(log);
+                return log;
+            },
+        },
+        getLogByCustomerId: {
+            type: new GraphQLList(LogType),
+            description: "A single Log by customer id",
+            args: {
+                customerId: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const log = await Logs.getLogByCustomerId(args.customerId);
+
                 return log;
             },
         },

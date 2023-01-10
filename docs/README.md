@@ -392,6 +392,20 @@ A single Log by id
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
+<tr>
+<td colspan="2" valign="top"><strong>getLogByCustomerId</strong></td>
+<td valign="top">[<a href="#logs">Logs</a>]</td>
+<td>
+
+A single Log by customer id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">customerId</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
@@ -1210,7 +1224,7 @@ The id of the log
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>end_time</strong></td>
-<td valign="top"><a href="#string">String</a>!</td>
+<td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
 <tr>
@@ -1220,7 +1234,7 @@ The id of the log
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>end_longitude</strong></td>
-<td valign="top"><a href="#string">String</a>!</td>
+<td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
 <tr>
@@ -1230,7 +1244,7 @@ The id of the log
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>end_latitude</strong></td>
-<td valign="top"><a href="#string">String</a>!</td>
+<td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>
 <tr>
@@ -1239,7 +1253,22 @@ The id of the log
 <td></td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><strong>price_id</strong></td>
+<td colspan="2" valign="top"><strong>customer_name</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>start_cost</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>travel_cost</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>parking_cost</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td></td>
 </tr>
