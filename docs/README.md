@@ -135,6 +135,20 @@ A single Customer by id
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>getCustomerByEmail</strong></td>
+<td valign="top">[<a href="#customer">Customer</a>]</td>
+<td>
+
+A single Customer by email
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">email</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getAllAccounts</strong></td>
 <td valign="top">[<a href="#account">Account</a>]</td>
 <td>
