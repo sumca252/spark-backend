@@ -135,6 +135,18 @@ const RootQueryType = new GraphQLObjectType({
                 return customer;
             },
         },
+        getCustomerByEmail: {
+            type: new GraphQLList(CustomerType),
+            description: "A single Customer by email",
+            args: {
+                email: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async (parent, args) => {
+                const customer = await Customers.getCustomerByEmail(args.email);
+
+                return customer;
+            },
+        },
         getAllAccounts: {
             type: new GraphQLList(AccountType),
             description: "List of all Accounts",
