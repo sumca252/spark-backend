@@ -356,8 +356,16 @@ VALUES
     );
 
 SELECT LAST_INSERT_ID() INTO @user_id;
+
 -- 
 INSERT INTO `customer` (`user_id`) VALUES (@user_id);
+
+SELECT LAST_INSERT_ID() INTO @customer_id;
+
+INSERT INTO `account` 
+    (`customer_id`, `balance`, `payment_method`) 
+VALUES (@customer_id, "0", "CARD");
+
 -- 
 SELECT * FROM `all_users` WHERE `id` = @user_id;
 END;;
@@ -1120,7 +1128,7 @@ BEGIN
     SELECT id INTO c_id FROM customer WHERE user_id = a_user_id;
     SELECT balance INTO ac_balance FROM account WHERE customer_id = c_id;
 
-    IF ac_balance < 0 THEN 
+    IF ac_balance > 0 THEN 
         SELECT 'You do not have enough money to rent a scooter' AS 'error'; 
     ELSE
         -- update the scooter status to rented
