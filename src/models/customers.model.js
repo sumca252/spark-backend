@@ -30,6 +30,19 @@ const Customers = {
 
         return result;
     },
+    getCustomerByEmail: (email) => {
+        const result = new Promise((resolve, reject) => {
+            db.query("CALL get_customer_by_email(?)", [email], (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows[0]);
+            });
+        });
+
+        return result;
+    },
 };
 
 module.exports = Customers;

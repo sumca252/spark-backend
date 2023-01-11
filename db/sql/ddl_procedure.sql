@@ -588,6 +588,28 @@ END;;
 
 DELIMITER ;
 
+--
+-- get customer by email
+--
+
+DROP PROCEDURE IF EXISTS `get_customer_by_email`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_customer_by_email`(
+    IN `a_email` VARCHAR(255)
+)
+BEGIN
+SELECT 
+    *
+FROM
+    all_customers
+WHERE
+    email LIKE CONCAT('%', a_email, '%');
+END;;
+
+DELIMITER ;
+
 
 --
 -- get all accounts
