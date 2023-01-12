@@ -30,7 +30,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-        origin: "*", //
+        // allow any origin to access the server
+        origin: ["*", process.env.FRONTEND_URL],
         credentials: true,
     })
 );
