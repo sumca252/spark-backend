@@ -103,9 +103,22 @@ router.get(
 );
 
 router.get(
+    "/github2",
+    passport.authenticate("github", { scope: ["user:email"] })
+);
+
+router.get(
     "/github/callback",
     passport.authenticate("github", {
         successRedirect: process.env.FRONTEND_URL,
+        failureRedirect: "/api/v1/auth/failure",
+    })
+);
+
+router.get(
+    "/github2/callback",
+    passport.authenticate("github", {
+        successRedirect: process.env.WEBADMIN_URL,
         failureRedirect: "/api/v1/auth/failure",
     })
 );
@@ -117,9 +130,22 @@ router.get(
 );
 
 router.get(
+    "/google2",
+    passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
     "/google/callback",
     passport.authenticate("google", {
         successRedirect: process.env.FRONTEND_URL,
+        failureRedirect: "/api/v1/auth/failure",
+    })
+);
+
+router.get(
+    "/google2/callback",
+    passport.authenticate("google", {
+        successRedirect: process.env.WEBADMIN_URL,
         failureRedirect: "/api/v1/auth/failure",
     })
 );
