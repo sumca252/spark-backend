@@ -318,6 +318,23 @@ END;;
 DELIMITER ;
 
 --
+-- Get all admins
+--
+DROP PROCEDURE IF EXISTS `get_all_admins`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `get_all_admins`()
+BEGIN
+SELECT 
+    *
+FROM
+    all_admins;
+END;;
+
+DELIMITER ;
+
+--
 -- add user
 --
 
