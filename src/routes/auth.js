@@ -175,9 +175,8 @@ router.get("/failure", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-    req.logout(() => {
-        res.redirect(process.env.FRONTEND_URL);
-    });
+    req.logout();
+    res.status(200).json({ status: 200, message: "Logout successful" });
 });
 
 module.exports = router;
