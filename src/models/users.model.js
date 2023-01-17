@@ -19,6 +19,19 @@ const Users = {
 
         return result;
     },
+    getAllAdmins: () => {
+        const result = new Promise((resolve, reject) => {
+            db.query("CALL get_all_admins()", (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows[0]);
+            });
+        });
+
+        return result;
+    },
     getUserById: (id) => {
         const result = new Promise((resolve, reject) => {
             db.query("CALL get_user_by_id(?)", [id], (err, rows) => {
