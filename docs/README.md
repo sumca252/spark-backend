@@ -61,6 +61,15 @@ A single Role by id
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>getAllAdmins</strong></td>
+<td valign="top">[<a href="#user">User</a>]</td>
+<td>
+
+List of all Admins
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getAllUsers</strong></td>
 <td valign="top">[<a href="#user">User</a>]</td>
 <td>
