@@ -405,6 +405,13 @@ VALUES
     );
 
 
+SELECT LAST_INSERT_ID() INTO @user_id;
+
+-- 
+INSERT INTO `customer` (`user_id`) VALUES (@user_id);
+
+SELECT LAST_INSERT_ID() INTO @customer_id;
+
 INSERT INTO `account` 
     (`customer_id`, `balance`, `payment_method`) 
 VALUES (@customer_id, "0", "CARD");
@@ -1142,29 +1149,60 @@ DROP FUNCTION IF EXISTS check_scooter_in_station;
 DELIMITER ;;
 
 CREATE FUNCTION check_scooter_in_station(
-	`a_scooter_id` INT
+	`a_scooter_id` INT,
+    `a_start_longitude` DECIMAL(10,8),
+    `a_start_latitude` DECIMAL(10,8)
 )
 RETURNS INT
 DETERMINISTIC CONTAINS SQL
 BEGIN
 	DECLARE st_id INT;
-    DECLARE scooter_lat INT;
-    DECLARE scooter_long INT;
-	DECLARE st_lat INT;
-    DECLARE st_long INT;
+	DECLARE st_lat DECIMAL(10,8);
+    DECLARE st_long DECIMAL(10,8);
 
     SELECT station_id INTO st_id FROM scooter WHERE id = a_scooter_id;
-	SELECT longitude INTO scooter_lat FROM scooter WHERE id = a_scooter_id;
-	SELECT latitude INTO scooter_long FROM scooter WHERE id = a_scooter_id;
+	SELECT longitude INTO st_long FROM station WHERE id = st_id;
+	SELECT latitude INTO st_lat FROM station WHERE id = st_id;
 
-	SELECT longitude INTO st_lat FROM station WHERE id = st_id;
-	SELECT latitude INTO st_long FROM station WHERE id = st_id;
-
-    IF scooter_lat = st_lat && scooter_long = st_long THEN
+    IF a_start_latitude = st_lat && a_start_longitude = st_long THEN
         RETURN 0;
     ELSE
         RETURN -1;
     END IF;
+END
+;;
+DELIMITER ;
+
+-- 
+-- Returns the total cost for the trip
+-- If the customer does not leave the scooter in a station => (travel cost * travel time) + parking cost
+-- If the customer leaves the scooter in a station => (travel cost * travel time)
+-- If the customer returns the scooter and has taken it from free parking, the start cost will be reduced by 0.5
+DROP FUNCTION IF EXISTS calculate_price;
+DELIMITER ;;
+
+CREATE FUNCTION calculate_price(
+	`a_st_result` INT,
+    `a_time` INT,
+    `a_in_station` VARCHAR(20)
+)
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC CONTAINS SQL
+BEGIN
+	DECLARE total_price DECIMAL(10, 2);
+
+    -- a_st_result equals to -1 when scooter is not in a station.
+    IF a_st_result = -1 THEN
+		SET total_price = (a_time * 1) + 2;
+    ELSE
+        IF a_in_station = "Free parking" THEN
+			SET total_price = (a_time * 1) - 0.5;
+		ELSE
+			SET total_price = a_time * 1;
+		END IF;
+    END IF;
+    
+    RETURN total_price;
 END
 ;;
 DELIMITER ;
@@ -1187,19 +1225,38 @@ CREATE PROCEDURE `rent_scooter`(
 BEGIN
 	DECLARE c_id INT;
     DECLARE ac_balance DECIMAL(10,2);
+	DECLARE result VARCHAR(20);
+	DECLARE ac_payment VARCHAR(255);
+	DECLARE ac_id VARCHAR(255);
+
+	-- check if scooter is in the station.
+	SET @st_result = (SELECT check_scooter_in_station(a_scooter_id, a_start_longitude, a_start_latitude));
 
 	SELECT id INTO c_id FROM customer WHERE user_id = a_user_id;
     SELECT balance INTO ac_balance FROM account WHERE customer_id = c_id;
+	SELECT payment_method INTO ac_payment FROM account WHERE customer_id = c_id;
+    SELECT id INTO ac_id FROM account WHERE customer_id = c_id;
 
     IF ac_balance < 10 THEN 
         SELECT 'You do not have enough money to rent a scooter' AS 'error'; 
     ELSE
         -- update the scooter status to rented
         UPDATE `scooter` SET `status_id` = '8' WHERE `id` = a_scooter_id;
-        
-        -- update the account balance, customer pays the start price
-        UPDATE `account` SET `balance` = ac_balance - 1 WHERE `customer_id` = c_id;
-        
+
+		-- update the account balance, customer pays the start cost.
+		UPDATE `account` SET `balance` = ac_balance - 1 WHERE `customer_id` = c_id;
+
+        -- Check if the customer takes a scooter that is in a free parking lot.
+        -- st_result equals to 0 when scooter is in a station.
+		IF @st_result = 0 THEN
+            SET result = "Station";
+		ELSE
+			SET result = "Free parking";
+		END IF;
+
+		-- create new payment
+		CALL add_new_payment(ac_payment, ac_id, 1);
+
         -- create a log
         CALL create_log(
             a_start_longitude, 
@@ -1209,7 +1266,7 @@ BEGIN
             a_scooter_id
         );
         
-        SELECT 'You have successfully rented a scooter' AS 'success';
+        SELECT result AS 'success';
     END IF;
 END;;
 
@@ -1218,6 +1275,7 @@ DELIMITER ;
 -- 
 -- return scooter
 -- The time (INT) is in minutes.
+-- The in_station can either be 'fee parking' or 'station'.
 DROP PROCEDURE IF EXISTS `return_scooter`;
 
 DELIMITER ;;
@@ -1227,50 +1285,49 @@ CREATE PROCEDURE `return_scooter`(
     IN `a_user_id` INT,
     IN `a_end_longitude` DECIMAL(10,8),
     IN `a_end_latitude` DECIMAL(10,8),
-    IN `a_time` INT
+    IN `a_time` INT,
+    IN `a_in_station` VARCHAR(20)
 )
 BEGIN
 	DECLARE c_id INT;
     DECLARE ac_balance DECIMAL(10,2);
     DECLARE log_id INT;
-    DECLARE total_price INT;
+	DECLARE ac_payment VARCHAR(255);
+    DECLARE ac_id INT;
+	DECLARE payment_id INT;
 
-	-- check if the scooter is in the station.
-	SET @st_result = (SELECT check_scooter_in_station(a_scooter_id));
+	-- check if the scooter is in the station and caculate the total cost
+    SET @st_result = (SELECT check_scooter_in_station(a_scooter_id, a_end_longitude, a_end_latitude));
+	SET @total_price = (SELECT calculate_price(@st_result, a_time, a_in_station));
 
-    -- get the customer id and account balance
+    -- get the customer id, account id, payment method and account balance.
     SELECT id INTO c_id FROM customer WHERE user_id = a_user_id;
     SELECT balance INTO ac_balance FROM account WHERE customer_id = c_id;
+	SELECT payment_method INTO ac_payment FROM account WHERE customer_id = c_id;
+	SELECT id INTO ac_id FROM account WHERE customer_id = c_id;
 
-    -- get customers log id
+    -- get customers log id and payment id
     SELECT id INTO log_id FROM logs WHERE customer_id = c_id AND scooter_id = a_scooter_id ORDER BY id DESC LIMIT 1;
+    SELECT id INTO payment_id FROM payment WHERE account_id = ac_id ORDER BY id DESC LIMIT 1;
 
-    -- calculate the total price for the traveled time 
-    -- (travel cost * travel time) + parking cost
-    
-    IF @st_result = -1 THEN
-		SET total_price = (a_time * 1) + 2;
-    ELSE
-		SET total_price = a_time * 1;
-    END IF;
-
-
-	IF total_price > ac_balance THEN
-		  SELECT 'You dont have enough money to pay for the rent.' AS 'Fail';
+	IF @total_price > ac_balance THEN
+		  SELECT 'You dont have enough money to pay for the rent.' AS 'error';
 	ELSE
-		-- update the scooter status to available
+		-- update the scooter status to available and change the scooter location
 		UPDATE 
 			`scooter` 
 		SET 
-			`status_id` = 1
+			`status_id` = 1,
+			`longitude` = a_end_longitude,
+			`latitude` = a_end_latitude
 		WHERE `id` = a_scooter_id;
 
 		-- update the account balance
-		UPDATE 
-			`account` 
-		SET 
-			`balance` = ac_balance - total_price
-		WHERE `customer_id` = c_id;
+		UPDATE `account` SET `balance` = ac_balance - @total_price WHERE `customer_id` = c_id;
+
+		-- Update payment
+		CALL update_payment_by_id(payment_id, @total_price);
+		
 
 		-- update_log_by_log_id(log_id end_time end_longitude end_latitude)
 		CALL update_log_by_log_id(
@@ -1286,6 +1343,52 @@ BEGIN
 END;;
 
 DELIMITER ;
+
+--
+-- add new payment
+--
+DROP PROCEDURE IF EXISTS `add_new_payment`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `add_new_payment`(
+    IN `a_payment_method` VARCHAR(255), 
+    IN `a_account_id` INT, 
+    IN `a_cost` DECIMAL(10, 2)
+)
+BEGIN
+
+INSERT INTO 
+	`payment` (`payment_method`, `account_id`, `price_id`, `date`,  `total`)
+VALUES 
+	(a_payment_method, a_account_id, "1" , Now(), a_cost);
+
+END;;
+
+DELIMITER ;
+
+
+--
+-- update station by id
+--
+DROP PROCEDURE IF EXISTS `update_payment_by_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `update_payment_by_id`(
+    IN `a_id` INT,
+	IN `a_cost` DECIMAL(10, 2)
+)
+BEGIN
+UPDATE `payment`
+SET 
+    `total` = `total` + a_cost
+WHERE
+    `id` = a_id;
+END;;   
+
+DELIMITER ;
+
 
 --
 -- get all payments
