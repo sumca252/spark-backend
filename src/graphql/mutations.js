@@ -31,15 +31,23 @@ const RootMutationType = new GraphQLObjectType({
             description: "Add a city to the database",
             args: {
                 name: {
+                    description: "Name of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 country: {
+                    description: "Country of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 longitude: {
+                    description: "Longitude of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 latitude: {
+                    description: "Latitude of the city",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                area: {
+                    description: "Area of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
