@@ -517,6 +517,7 @@ CREATE PROCEDURE `update_user_by_id`(
     IN `a_id` INT,
     IN `a_first_name` VARCHAR(255), 
     IN `a_last_name` VARCHAR(255), 
+    IN `a_username` VARCHAR(255),
     IN `a_password` VARCHAR(255), 
     IN `a_email` VARCHAR(255), 
     IN `a_phone` VARCHAR(255), 
@@ -528,6 +529,7 @@ UPDATE
 SET 
     `first_name` = a_first_name,
     `last_name` = a_last_name,
+    `username` = a_username,
     `password` = a_password,
     `email` = a_email,
     `phone` = a_phone,

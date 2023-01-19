@@ -344,24 +344,35 @@ const RootMutationType = new GraphQLObjectType({
             description: "Update a user in the database by id",
             args: {
                 id: {
+                    description: "Id of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 first_name: {
+                    description: "First name of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 last_name: {
+                    description: "Last name of the user",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                username: {
+                    description: "Username of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 password: {
+                    description: "Password of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 email: {
+                    description: "Email of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 phone: {
+                    description: "Phone number of the user",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 role_id: {
+                    description: "Role of the user (1 = admin, 2 = customer)",
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
