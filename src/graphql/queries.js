@@ -66,6 +66,15 @@ const RootQueryType = new GraphQLObjectType({
                 return role;
             },
         },
+        getAllAdmins: {
+            type: new GraphQLList(UserType),
+            description: "List of all Admins",
+            resolve: async () => {
+                const admins = await Users.getAllAdmins();
+
+                return admins;
+            },
+        },
         getAllUsers: {
             type: new GraphQLList(UserType),
             description: "List of all Users",

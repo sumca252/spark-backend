@@ -31,8 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
     cors({
         // allow any origin to access the server
-        origin: ["*", process.env.FRONTEND_URL],
+        origin: ["*", process.env.FRONTEND_URL, process.env.WEBADMIN_URL],
         credentials: true,
+        methods: ["POST", "GET"],
     })
 );
 
