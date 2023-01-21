@@ -113,10 +113,10 @@ const RootQueryType = new GraphQLObjectType({
             description: "A single User by username",
             args: {
                 username: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: async (parent, args) => {
-                const user = args.username ? args.username : args.email;
-                const result = await Users.getUserByUsernameOrEmail(user);
+                const result = await Users.getUserByUsernameOrEmail(args.username, args.email);
 
                 return result;
             },
