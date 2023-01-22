@@ -60,18 +60,27 @@ const RootMutationType = new GraphQLObjectType({
             description: "Update a city in the database by id",
             args: {
                 id: {
+                    description: "Id of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 name: {
+                    description: "Name of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 country: {
+                    description: "Country of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 longitude: {
+                    description: "Longitude of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
                 latitude: {
+                    description: "Latitude of the city",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                area: {
+                    description: "Area of the city",
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
@@ -261,6 +270,7 @@ const RootMutationType = new GraphQLObjectType({
                     args.latitude
                 );
 
+                console.log(result);
                 return result;
             },
         },
@@ -284,9 +294,13 @@ const RootMutationType = new GraphQLObjectType({
                     description: "Latitude of the scooter",
                     type: new GraphQLNonNull(GraphQLString),
                 },
-                distance: {
+                time: {
                     description:
-                        "travelled distance for calculating total price",
+                        "Time in seconds that the user has been using the scooter",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                station: {
+                    description: "Is the scooter in a station or not",
                     type: new GraphQLNonNull(GraphQLString),
                 },
             },
@@ -296,7 +310,8 @@ const RootMutationType = new GraphQLObjectType({
                     args.user_id,
                     args.longitude,
                     args.latitude,
-                    args.distance
+                    args.time,
+                    args.station
                 );
             },
         },
