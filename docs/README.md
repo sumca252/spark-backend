@@ -535,27 +535,56 @@ Update a city in the database by id
 <tr>
 <td colspan="2" align="right" valign="top">id</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Id of the city
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">name</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Name of the city
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">country</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Country of the city
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">longitude</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Longitude of the city
+
+</td>
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">latitude</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+Latitude of the city
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">area</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Area of the city
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>addStation</strong></td>
@@ -861,11 +890,20 @@ Latitude of the scooter
 </td>
 </tr>
 <tr>
-<td colspan="2" align="right" valign="top">distance</td>
+<td colspan="2" align="right" valign="top">time</td>
 <td valign="top"><a href="#string">String</a>!</td>
 <td>
 
-travelled distance for calculating total price
+Time in seconds that the user has been using the scooter
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">station</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Is the scooter in a station or not
 
 </td>
 </tr>
@@ -1649,6 +1687,15 @@ The speed of the scooter
 <td>
 
 The station where the scooter is located
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>success</strong></td>
+<td valign="top"><a href="#string">String</a></td>
+<td>
+
+Message of the rental process
 
 </td>
 </tr>
