@@ -213,6 +213,10 @@ const ScooterType = new GraphQLObjectType({
                 };
             },
         },
+        success: {
+            description: "Message of the rental process",
+            type: GraphQLString,
+        },
     }),
 });
 

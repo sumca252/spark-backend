@@ -134,17 +134,16 @@ const Scooters = {
         return result;
     },
 
-    returnScooter: (scooterId, userId, endLong, endLat, distance) => {
+    returnScooter: (scooterId, userId, endLong, endLat, time, status) => {
         return new Promise((resolve, reject) => {
             db.query(
-                "CALL return_scooter(?,?,?,?,?)",
-                [scooterId, userId, endLong, endLat, distance],
+                "CALL return_scooter(?,?,?,?,?,?)",
+                [scooterId, userId, endLong, endLat, time, status],
                 (err, rows) => {
                     if (err) {
                         console.log(err);
                         reject(err);
                     }
-                    console.log(rows[0][0]);
                     resolve(rows[0][0]);
                 }
             );
