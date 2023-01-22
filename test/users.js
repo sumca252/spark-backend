@@ -143,7 +143,9 @@ describe("/api/v1/graphql", () => {
                 .send({
                     query: `
                         {
-                            getUserByUsernameOrEmail(username:"JosephGuzman1374") {
+                            getUserByUsernameOrEmail(
+                                username:"JosephGuzman1374", email:"test@bth.se"
+                            ) {
                             id,
                             first_name,
                             last_name,

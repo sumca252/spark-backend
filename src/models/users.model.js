@@ -122,6 +122,10 @@ const Users = {
         });
     },
     updateUserById: (user) => {
+        const hashedPassword = bcrypt.hashSync(user.password, 10);
+
+        user.password = hashedPassword;
+
         const result = new Promise((resolve, reject) => {
             db.query(
                 "CALL update_user_by_id(?, ?, ?, ?, ?, ?, ?, ?)",
