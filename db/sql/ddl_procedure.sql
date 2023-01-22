@@ -1002,7 +1002,6 @@ SELECT LAST_INSERT_ID() INTO @log_id;
 --
 --
 SELECT @log_id AS id;
---
 END;;
 DELIMITER ;
 
@@ -1285,7 +1284,7 @@ BEGIN
             a_scooter_id
         );
         
-        SELECT result AS 'success';
+        SELECT @log_id AS 'id', result AS 'success';
     END IF;
 END;;
 
