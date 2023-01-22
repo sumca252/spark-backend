@@ -95,13 +95,15 @@ describe("/api/v1/graphql", () => {
                                 name: "Karlskrona",
                                 country: "Sweden",
                                 longitude: "15.5866",
-                                latitude: "56.1616"
+                                latitude: "56.1616",
+                                area: "21.72"
                             ) {
                                 id,
                                 name,
                                 country,
                                 longitude,
                                 latitude
+                                area
                             }
                         }
                     `,
@@ -123,13 +125,15 @@ describe("/api/v1/graphql", () => {
                                 name: "Karlshamn",
                                 country: "Sweden",
                                 longitude: "15.5866",
-                                latitude: "56.1616"
+                                latitude: "56.1616",
+                                area: "13.48"
                             ) {
                                 id,
                                 name,
                                 country,
                                 longitude,
-                                latitude
+                                latitude,
+                                area
                             }
                         }
                     `,
