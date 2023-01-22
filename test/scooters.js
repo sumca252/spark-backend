@@ -323,5 +323,57 @@ describe("/api/v1/graphql", () => {
                     done();
                 });
         });
+
+        it("Should rent a scooter", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            rentScooter(
+                                id: "1",
+                                user_id: "10",
+                                longitude: "18.07109350",
+                                latitude: "59.32511720"
+                            ) {
+                                id
+                                success
+                            } 
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.rentScooter.should.have.property("id");
+                    res.body.data.rentScooter.should.have.property("success");
+                    done();
+                });
+        });
+
+        it("Should return a scooter", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            returnScooter(
+                                id: "1",
+                                user_id: "10",
+                                longitude: "18.07109350",
+                                latitude: "59.32511720"
+                                time: "10"
+                                station: "Free parking"
+                            ) {
+                                id
+                               
+                            } 
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
     });
 });
