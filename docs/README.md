@@ -791,6 +791,45 @@ Update a scooter in the database by id
 <td></td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>updateRentedScooterById</strong></td>
+<td valign="top"><a href="#scooter">Scooter</a></td>
+<td>
+
+Update a scooter's speed/position/battery in the database by id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">battery</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">status_id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">longitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">latitude</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">speed</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>deleteScooterById</strong></td>
 <td valign="top"><a href="#scooter">Scooter</a></td>
 <td>
