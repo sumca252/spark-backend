@@ -107,6 +107,28 @@ const Scooters = {
             );
         });
     },
+    updateRentedScooterById: (scooter) => {
+        new Promise((resolve, reject) => {
+            db.query(
+                "CALL update_rented_scooter_by_id(?, ?, ?, ?, ?, ?)",
+                [
+                    scooter.id,
+                    scooter.battery,
+                    scooter.status_id,
+                    scooter.longitude,
+                    scooter.latitude,
+                    scooter.speed,
+                ],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resolve(rows[0]);
+                }
+            );
+        });
+    },
     deleteScooterById: (id) => {
         new Promise((resolve, reject) => {
             db.query("CALL delete_scooter_by_id(?)", [id], (err) => {
@@ -126,7 +148,7 @@ const Scooters = {
                         reject(err);
                     }
 
-                    resolve(rows[0][0]);
+                    resolve(rows[1][0]);
                 }
             );
         });
