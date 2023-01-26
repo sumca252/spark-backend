@@ -22,6 +22,23 @@ const app = express();
 
 const httpServer = require("http").createServer(app);
 
+const io = require("socket.io")(httpServer, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
+
+const scooters = require("./models/scooters.model.js");
+
+io.on("connection", (socket) => {
+    setInterval(async () => {
+        const data = await scooters.getAllScooters();
+
+        socket.emit("simulation", data.slice(0, 1000));
+    }, 500);
+});
+
 // for parsing application/json
 app.use(express.json());
 
