@@ -137,6 +137,37 @@ WHERE
 END;;
 DELIMITER ;
 
+
+
+--
+-- update a specific rented scooter by id
+--
+DROP PROCEDURE IF EXISTS `update_rented_scooter_by_id`;
+
+DELIMITER ;;
+
+CREATE PROCEDURE `update_rented_scooter_by_id`(
+    IN `a_id` INT,
+    IN `a_battery` INT,
+    IN `a_status_id` INT,
+    IN `a_longitude` DECIMAL(10, 8), 
+    IN `a_latitude` DECIMAL(10, 8), 
+    IN `a_speed` INT
+)
+BEGIN
+UPDATE 
+    `scooter`
+SET 
+    `battery` = a_battery,
+    `status_id` = a_status_id,
+    `longitude` = a_longitude,
+    `latitude` = a_latitude,
+    `speed` = a_speed
+WHERE 
+    `id` = a_id;
+END;;
+DELIMITER ;
+
 --
 -- 
 --

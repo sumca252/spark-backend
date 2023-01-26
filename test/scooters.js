@@ -169,6 +169,32 @@ describe("/api/v1/graphql", () => {
                 });
         });
 
+        it("Should update a rented scooter by id", (done) => {
+            chai.request(server)
+                .post("/api/v1/graphql")
+                .send({
+                    query: `
+                        mutation {
+                            updateRentedScooterById(
+                                id: "40000",
+                                battery: "90",
+                                status_id: "7",
+                                longitude: "1.0",
+                                latitude: "1.0",
+                                speed: "13",
+                            ) {
+                                id
+                            } 
+                        }
+                    `,
+                })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+
         it("Should delete a scooter by id", (done) => {
             chai.request(server)
                 .post("/api/v1/graphql")
