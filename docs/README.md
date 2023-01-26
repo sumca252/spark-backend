@@ -121,6 +121,11 @@ A single User by username
 <td></td>
 </tr>
 <tr>
+<td colspan="2" align="right" valign="top">email</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>getAllCustomers</strong></td>
 <td valign="top">[<a href="#customer">Customer</a>]</td>
 <td>
@@ -1061,6 +1066,69 @@ Role of the user (1 = admin, 2 = customer)
 </td>
 </tr>
 <tr>
+<td colspan="2" valign="top"><strong>updateCustomerByCustomerId</strong></td>
+<td valign="top"><a href="#customer">Customer</a></td>
+<td>
+
+Update a customer in the database by customer id
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">id</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Id of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">first_name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+First name of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">last_name</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Last name of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">username</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Username of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">email</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Email of the customer
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right" valign="top">phone</td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Phone number of the customer
+
+</td>
+</tr>
+<tr>
 <td colspan="2" valign="top"><strong>createLog</strong></td>
 <td valign="top"><a href="#logs">Logs</a></td>
 <td>
@@ -1335,6 +1403,15 @@ The id of the customer
 <td>
 
 Customer's user
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><strong>result</strong></td>
+<td valign="top"><a href="#string">String</a>!</td>
+<td>
+
+Success or failure of the operation
 
 </td>
 </tr>
