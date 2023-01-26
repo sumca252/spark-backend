@@ -11,6 +11,7 @@ const Zone = require("../models/zones.model");
 const Scooter = require("../models/scooters.model");
 const Logs = require("../models/logs.model");
 const Accounts = require("../models/accounts.model");
+const Customers = require("../models/customers.model");
 
 const {
     UserType,
@@ -20,6 +21,7 @@ const {
     ScooterType,
     LogType,
     AccountType,
+    CustomerType,
 } = require("./types");
 
 const RootMutationType = new GraphQLObjectType({
@@ -393,6 +395,43 @@ const RootMutationType = new GraphQLObjectType({
             },
             resolve: (parent, args) => {
                 User.updateUserById(args);
+            },
+        },
+        updateCustomerByCustomerId: {
+            type: CustomerType,
+            description: "Update a customer in the database by customer id",
+            args: {
+                id: {
+                    description: "Id of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                first_name: {
+                    description: "First name of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                last_name: {
+                    description: "Last name of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                username: {
+                    description: "Username of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                email: {
+                    description: "Email of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+                phone: {
+                    description: "Phone number of the customer",
+                    type: new GraphQLNonNull(GraphQLString),
+                },
+            },
+            resolve: async (parent, args) => {
+                console.log("args: ", args);
+
+                const result = await Customers.updateCustomeByCustomerId(args);
+
+                return result;
             },
         },
         createLog: {

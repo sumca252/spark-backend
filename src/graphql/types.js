@@ -80,6 +80,10 @@ const CustomerType = new GraphQLObjectType({
                 };
             },
         },
+        result: {
+            description: "Success or failure of the operation",
+            type: new GraphQLNonNull(GraphQLString),
+        },
     }),
 });
 

@@ -641,7 +641,50 @@ END;;
 
 DELIMITER ;
 
+--
+-- update customer by customer id
+--
+DROP PROCEDURE IF EXISTS `update_customer_by_id`;
 
+DELIMITER ;;
+
+CREATE PROCEDURE `update_customer_by_id`(
+    IN `a_customer_id` INT,
+    IN `a_first_name` VARCHAR(255), 
+    IN `a_last_name` VARCHAR(255), 
+    IN `a_username` VARCHAR(255),
+    IN `a_email` VARCHAR(255), 
+    IN `a_phone` VARCHAR(255)
+)
+BEGIN
+    DECLARE a_user_id INT;
+    DECLARE result VARCHAR(255);
+    SELECT user_id INTO a_user_id FROM customer WHERE id = a_customer_id;
+
+    if a_user_id IS NOT NULL THEN
+        UPDATE 
+            `user`
+        SET
+            `first_name` = a_first_name,
+            `last_name` = a_last_name,
+            `username` = a_username,
+            `email` = a_email,
+            `phone` = a_phone
+        WHERE 
+            `id` = a_user_id;
+    else
+        SET result = 'User not found';
+    end if;
+
+    SELECT "Updated customer" AS result;
+
+END;;
+
+DELIMITER ;
+
+   
+
+   
 --
 -- get all accounts
 --

@@ -43,6 +43,32 @@ const Customers = {
 
         return result;
     },
+    updateCustomeByCustomerId: (customer) => {
+        console.log("customerModel", customer);
+
+        const result = new Promise((resolve, reject) => {
+            db.query(
+                "CALL update_customer_by_id(?, ?, ?, ?, ?,?)",
+                [
+                    customer.id,
+                    customer.first_name,
+                    customer.last_name,
+                    customer.username,
+                    customer.email,
+                    customer.phone,
+                ],
+                (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    console.log(rows[0][0]);
+                    resolve(rows[0][0]);
+                }
+            );
+        });
+
+        return result;
+    },
 };
 
 module.exports = Customers;
