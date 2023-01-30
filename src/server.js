@@ -24,7 +24,7 @@ const httpServer = require("http").createServer(app);
 
 const io = require("socket.io")(httpServer, {
     cors: {
-        origin: "*",
+        origin: ["*", process.env.FRONTEND_URL, process.env.WEBADMIN_URL],
         methods: ["GET", "POST"],
     },
 });
@@ -47,7 +47,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-        origin: "*",
+        origin: ["*", process.env.FRONTEND_URL, process.env.WEBADMIN_URL],
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
     })
