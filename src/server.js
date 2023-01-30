@@ -52,7 +52,12 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-        origin: ["*", process.env.FRONTEND_URL, process.env.WEBADMIN_URL],
+        origin: [
+            "*",
+            process.env.FRONTEND_URL,
+            process.env.WEBADMIN_URL,
+            process.env.APP_URL,
+        ],
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
     })
